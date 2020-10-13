@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <ListDesRestaurants />
+    <restaurantList />
   </div>
 </template>
 
 <script>
-import ListDesRestaurants from "./components/restaurantList.vue";
+import restaurantList from "./components/restaurantList.vue";
 
 export default {
   name: "App",
   components: {
-    ListDesRestaurants,
+    restaurantList,
   },
 };
 </script>
@@ -23,6 +23,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background: green;
 }
 </style>

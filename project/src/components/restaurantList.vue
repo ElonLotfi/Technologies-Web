@@ -30,11 +30,11 @@
 <script>
 import _ from "lodash";
 export default {
-  name: "ListDesRestaurants",
+  name: "restaurantList",
   props: {
     msg: String,
   },
-  data: function() {
+  data: function () {
     return {
       restaurants: [],
       nom: "", // ici pour ajouter un restaurant
@@ -54,7 +54,7 @@ export default {
   methods: {
     async getRestaurantsFromServer() {
       let url =
-        "http://127.0.0.1:1234/api/restaurants/?page=" + this.currentPage;
+        "http://127.0.0.1:1235/api/restaurants/?page=" + this.currentPage;
       url += "&pagesize=" + this.pageSize;
       url += "&name=" + this.nameSearch;
 
@@ -77,7 +77,7 @@ export default {
     },
 
     deleteRestaurant(r) {
-      let url = "http://127.0.0.1:1234/api/restaurants/";
+      let url = "http://127.0.0.1:1235/api/restaurants/";
       url += r._id;
 
       fetch(url, {
@@ -95,7 +95,7 @@ export default {
         });
     },
     // chercher un restaurant
-    searchRestaurant: _.debounce(function() {
+    searchRestaurant: _.debounce(function () {
       this.getRestaurantsFromServer();
     }, 600),
     //// Ajouter un restaurant dans la base de donnée
