@@ -1,30 +1,71 @@
 <template>
-  <table>
-    <tr>
-      <th>Nom</th>
-      <th>Cuisine</th>
-    </tr>
-    <tbody>
-      <tr
-        v-for="(r, index) in restaurants"
-        :key="index"
-        v-bind:style="{ backgroundColor: getColor(index) }"
-        v-bind:class="{ bordureRouge: index === 2 }"
-      >
-        <td>{{ r.name }}</td>
-        <td>{{ r.cuisine }}</td>
-        <td>
-          <button
-            v-on:click="deleteRestaurant(r)"
-            class="favorite styled"
-            type="button"
-          >
-            supprimé
-          </button>
-        </td>
+  <div>
+    <form @submit.prevent="ajouterRestaurant($event)">
+      <label>
+        Nom : <input name="nom" type="text" required v-model="nom" />
+      </label>
+      <label>
+        Cuisine :
+        <input name="cuisine" type="text" required v-model="cuisine" />
+      </label>
+
+      <button>Ajouter</button>
+    </form>
+
+    <h1>Nombre de restaurants : {{ this.nbrRestaurant }}</h1>
+    <h1>Nombre total de pages : {{ this.nbrPage }}</h1>
+
+    <p>
+      nombre de restaurant par page :
+      <input
+        type="range"
+        min="5"
+        max="100"
+        value="5"
+        v-model="pageSize"
+        @input="getRestaurantsFromServer()"
+      />{{ pageSize }}
+    </p>
+
+    <div align="center">
+      <label>
+        chercher un restaurant :
+        <input
+          @input="searchRestaurant()"
+          type="text"
+          required
+          v-model="nameSearch"
+        />
+      </label>
+    </div>
+
+    <table>
+      <tr>
+        <th>Nom</th>
+        <th>Cuisine</th>
       </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr
+          v-for="(r, index) in restaurants"
+          :key="index"
+          v-bind:style="{ backgroundColor: getColor(index) }"
+          v-bind:class="{ bordureRouge: index === 2 }"
+        >
+          <td>{{ r.name }}</td>
+          <td>{{ r.cuisine }}</td>
+          <td>
+            <button
+              v-on:click="deleteRestaurant(r)"
+              class="favorite styled"
+              type="button"
+            >
+              supprimé
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -34,7 +75,7 @@ export default {
   props: {
     msg: String,
   },
-  data: function () {
+  data: function() {
     return {
       restaurants: [],
       nom: "", // ici pour ajouter un restaurant
@@ -95,7 +136,7 @@ export default {
         });
     },
     // chercher un restaurant
-    searchRestaurant: _.debounce(function () {
+    searchRestaurant: _.debounce(function() {
       this.getRestaurantsFromServer();
     }, 600),
     //// Ajouter un restaurant dans la base de donnée
@@ -113,7 +154,7 @@ export default {
       // comme cela, si on connait le nom
       // du champ (valeur de son attribut name)
 
-      let url = "http://127.0.0.1:1234/api/restaurants/";
+      let url = "http://127.0.0.1:1235/api/restaurants/";
 
       fetch(url, {
         method: "POST",
