@@ -1,15 +1,10 @@
 <template>
   <div>
     <form @submit.prevent="ajouterRestaurant($event)">
-      <label>
-        Nom : <input name="nom" type="text" required v-model="nom" />
-      </label>
-      <label>
-        Cuisine :
-        <input name="cuisine" type="text" required v-model="cuisine" />
-      </label>
+      <InputField name="nom" type="text" required v-model="nom" />
+      <InputField name="cuisine" type="text" required v-model="cuisine" />
 
-      <button>Ajouter</button>
+      <Btn>Ajouter </Btn>
     </form>
 
     <h1>Nombre de restaurants : {{ this.nbrRestaurant }}</h1>
@@ -69,9 +64,15 @@
 </template>
 
 <script>
+import Btn from "./Btn";
+import InputField from "./InputField";
 import _ from "lodash";
 export default {
   name: "restaurantList",
+  components: {
+    Btn,
+    InputField,
+  },
   props: {
     msg: String,
   },
