@@ -1,0 +1,28 @@
+<template>
+  <div id="app">
+    <ListDesRestaurants msg="hello this is a test" />
+  </div>
+</template>
+
+<script>
+import ListDesRestaurants from "./components/restaurantList.vue";
+
+export default {
+  name: "App",
+  components: {
+    ListDesRestaurants,
+  },
+};
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  background: green;
+}
+</style>
