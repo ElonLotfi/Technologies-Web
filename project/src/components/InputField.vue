@@ -1,17 +1,24 @@
 <template>
-  <section>
-    <b-field label="Username" type="text" message="This username is available">
-      <b-input size="is-small" value="" maxlength="35"></b-input>
-    </b-field>
-  </section>
+  <div>
+    <md-field>
+      <label>Initial Value</label>
+      <md-input v-model="initial"></md-input>
+    </md-field>
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      name: "John Silver",
-    };
-  },
+  name: "TextFields",
+  data: () => ({
+    initial: "Initial Value",
+    type: null,
+    withLabel: null,
+    inline: null,
+    number: null,
+    textarea: null,
+    autogrow: null,
+    disabled: null,
+  }),
 };
 </script>

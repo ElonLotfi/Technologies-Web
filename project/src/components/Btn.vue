@@ -1,14 +1,23 @@
 <template>
-  <section>
-    <b-button type="is-success"  @click="clickMe">Success</b-button>
-  </section>
+  <div>
+    <div>
+      <md-button class="md-primary">Primary</md-button>
+    </div>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+small {
+  display: block;
+}
+</style>
 
 <script>
 export default {
-  methods: {
-    clickMe() {
-      this.$buefy.notification.open("Clicked!!");
+  name: "ButtonVsLink",
+  computed: {
+    pageUrl() {
+      return window.location.href;
     },
   },
 };

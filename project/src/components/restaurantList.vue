@@ -34,49 +34,30 @@
       </label>
     </div>
 
-    <table>
-      <tr>
-        <th>Nom</th>
-        <th>Cuisine</th>
-      </tr>
-      <tbody>
-        <tr
-          v-for="(r, index) in restaurants"
-          :key="index"
-          v-bind:style="{ backgroundColor: getColor(index) }"
-          v-bind:class="{ bordureRouge: index === 2 }"
-        >
-          <td>{{ r.name }}</td>
-          <td>{{ r.cuisine }}</td>
-          <td>
-            <button
-              v-on:click="deleteRestaurant(r)"
-              class="favorite styled"
-              type="button"
-            >
-              supprimé
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <Tb
+      v-bind:restaurants="this.restaurants"
+      v-bind:deleteRestaurant="deleteRestaurant"
+    ></Tb>
   </div>
 </template>
 
 <script>
 import Btn from "./Btn";
 import InputField from "./InputField";
+import Tb from "./Tb";
 import _ from "lodash";
 export default {
   name: "restaurantList",
   components: {
     Btn,
     InputField,
+    Tb,
   },
   props: {
     msg: String,
+    restaurant: Array,
   },
-  data: function() {
+  data: function () {
     return {
       restaurants: [],
       nom: "", // ici pour ajouter un restaurant
@@ -137,7 +118,7 @@ export default {
         });
     },
     // chercher un restaurant
-    searchRestaurant: _.debounce(function() {
+    searchRestaurant: _.debounce(function () {
       this.getRestaurantsFromServer();
     }, 600),
     //// Ajouter un restaurant dans la base de donnée
