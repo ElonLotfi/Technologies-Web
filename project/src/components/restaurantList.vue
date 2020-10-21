@@ -1,10 +1,10 @@
 <template>
   <div>
     <form @submit.prevent="ajouterRestaurant($event)">
-      <InputField name="nom" type="text" required v-model="nom" />
-      <InputField name="cuisine" type="text" required v-model="cuisine" />
+      <input name="nom" type="text" required v-model="nom" />
+      <input name="cuisine" type="text" required v-model="cuisine" />
 
-      <Btn>Ajouter </Btn>
+      <button>Ajouter </button>
     </form>
 
     <h1>Nombre de restaurants : {{ this.nbrRestaurant }}</h1>
@@ -34,24 +34,22 @@
       </label>
     </div>
 
-    <Tb
+    <Table
       v-bind:restaurants="this.restaurants"
       v-bind:deleteRestaurant="deleteRestaurant"
-    ></Tb>
+    ></Table>
   </div>
 </template>
 
 <script>
-import Btn from "./Btn";
-import InputField from "./InputField";
-import Tb from "./Tb";
+
+
+import Table from "./Table"
 import _ from "lodash";
 export default {
   name: "restaurantList",
   components: {
-    Btn,
-    InputField,
-    Tb,
+    Table,
   },
   props: {
     msg: String,
@@ -77,7 +75,7 @@ export default {
   methods: {
     async getRestaurantsFromServer() {
       let url =
-        "http://127.0.0.1:1235/api/restaurants/?page=" + this.currentPage;
+        "http://127.0.0.1:8080/api/restaurants/?page=" + this.currentPage;
       url += "&pagesize=" + this.pageSize;
       url += "&name=" + this.nameSearch;
 
@@ -100,7 +98,7 @@ export default {
     },
 
     deleteRestaurant(r) {
-      let url = "http://127.0.0.1:1235/api/restaurants/";
+      let url = "http://127.0.0.1:8080/api/restaurants/";
       url += r._id;
 
       fetch(url, {
@@ -136,7 +134,7 @@ export default {
       // comme cela, si on connait le nom
       // du champ (valeur de son attribut name)
 
-      let url = "http://127.0.0.1:1235/api/restaurants/";
+      let url = "http://127.0.0.1:8080/api/restaurants/";
 
       fetch(url, {
         method: "POST",
