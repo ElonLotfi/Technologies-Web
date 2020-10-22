@@ -61,9 +61,47 @@ import {API_URL , API_FETCH_URL} from "./config"
       });
   }
 
+
+
+  function fetchOneRestaurants(id) {
+    return fetch(API_URL + id)
+  }
+
+  function editRestaurant(event,id) {
+    // Pour éviter que la page ne se ré-affiche
+    //event.preventDefault();
+
+    // Récupération du formulaire. Pas besoin de document.querySelector
+    // ou document.getElementById puisque c'est le formulaire qui a généré
+    // l'événement
+    let form = event.target;
+    // Récupération des valeurs des champs du formulaire
+    // en prévision d'un envoi multipart en ajax/fetch
+    let donneesFormulaire = new FormData(form);
+    console.log(form.name);
+
+    // d'un champs d'un formulaire
+    // comme cela, si on connait le nom
+    // du champ (valeur de son attribut name)
+
+    
+
+    return fetch(API_URL + id, {
+      method: "PUT",
+      body: donneesFormulaire,
+    })
+
+  }
+
+
+
+
   export const restaurantService = {
     fetchRestaurants,
     addRestaurant,
     deleteRestaurant,
+    fetchOneRestaurants,
+    editRestaurant,
+
 
 };

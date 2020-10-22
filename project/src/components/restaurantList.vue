@@ -4,7 +4,7 @@
       <input name="nom" type="text" required v-model="nom" />
       <input name="cuisine" type="text" required v-model="cuisine" />
 
-      <button>Ajouter </button>
+      <button>Ajouter</button>
     </form>
 
     <h1>Nombre de restaurants : {{ this.nbrRestaurant }}</h1>
@@ -42,10 +42,9 @@
 </template>
 
 <script>
-
-
-import Table from "./Table"
+import Table from "./Table";
 import _ from "lodash";
+import { restaurantService } from "../services/restaurantService";
 export default {
   name: "restaurantList",
   components: {
@@ -54,6 +53,7 @@ export default {
   props: {
     msg: String,
     restaurant: Array,
+    nameToSearch: String,
   },
   data: function () {
     return {
@@ -74,17 +74,21 @@ export default {
   },
   methods: {
     async getRestaurantsFromServer() {
-      let url =
-        "http://127.0.0.1:8080/api/restaurants/?page=" + this.currentPage;
-      url += "&pagesize=" + this.pageSize;
-      url += "&name=" + this.nameSearch;
-
-      let reponseJSON = await fetch(url);
-      let res = await reponseJSON.json();
-
-      this.restaurants = res.data;
-      this.nbrRestaurant = res.count;
-      this.nbrPage = Math.round(this.nbrRestaurant / this.pageSize);
+      try {
+        await restaurantService
+          .fetchRestaurants(this.currentPage, this.pageSize, this.nameSearch)
+          .then((responseJSON) => {
+            responseJSON.json().then((res) => {
+              // console.log("the service work also ! " + res.msg);
+              //console.log(res.data);
+              this.restaurants = res.data;
+              this.nbrRestaurant = res.count;
+              this.nbrPage = Math.round(this.nbrRestaurant / this.pageSize);
+            });
+          });
+      } catch (error) {
+        console.log("error man");
+      }
     },
     nextPage() {
       // il manque de preciser la limite de pagination
@@ -98,59 +102,22 @@ export default {
     },
 
     deleteRestaurant(r) {
-      let url = "http://127.0.0.1:8080/api/restaurants/";
-      url += r._id;
-
-      fetch(url, {
-        method: "DELETE",
-      })
-        .then((responseJSON) => {
-          responseJSON.json().then((res) => {
-            console.log("restaurant supprimé avec succes ! ");
-            console.log(res.msg);
-            this.getRestaurantsFromServer(); // mise a jour de la vue
-          });
-        })
-        .catch((err) => {
-          console.log(err.msg);
-        });
+      restaurantService.deleteRestaurant(r).then(() => {
+        console.log("restaurant supprimé monsieur lotfi");
+        this.getRestaurantsFromServer();
+      });
     },
     // chercher un restaurant
     searchRestaurant: _.debounce(function () {
       this.getRestaurantsFromServer();
+      this.nameSearch = "";
     }, 600),
     //// Ajouter un restaurant dans la base de donnée
     ajouterRestaurant(event) {
-      // Récupération du formulaire. Pas besoin de document.querySelector
-      // ou document.getElementById puisque c'est le formulaire qui a généré
-      // l'événement
-      let form = event.target;
-      // Récupération des valeurs des champs du formulaire
-      // en prévision d'un envoi multipart en ajax/fetch
-      let donneesFormulaire = new FormData(form);
-
-      //let id = form._id.value; // on peut aller chercher la valeur
-      // d'un champs d'un formulaire
-      // comme cela, si on connait le nom
-      // du champ (valeur de son attribut name)
-
-      let url = "http://127.0.0.1:8080/api/restaurants/";
-
-      fetch(url, {
-        method: "POST",
-        body: donneesFormulaire,
-      })
-        .then((responseJSON) => {
-          responseJSON.json().then((res) => {
-            console.log("done !");
-            console.log(res.msg);
-            this.getRestaurantsFromServer(); // mise a jour de la vue
-          });
-        })
-        .catch((err) => {
-          console.log(err.msg);
-        });
-
+     restaurantService.addRestaurant(event).then(() => {
+        console.log("restaurant ajouté monsieur lotfi");
+        this.getRestaurantsFromServer();
+      });
       this.nom = "";
       this.cuisine = "";
     },

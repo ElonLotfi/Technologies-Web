@@ -1,17 +1,17 @@
+export * from './user.service';
 <template>
   <div id="app">
-    <restaurantList />
+    <router-link to="/">[Home]</router-link>
+    <router-link to="/Restaurant">[Restaurant]</router-link>
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import restaurantList from "./components/restaurantList.vue";
-
 export default {
   name: "App",
-  components: {
-    restaurantList,
-  },
+  components: {},
 };
 </script>
 

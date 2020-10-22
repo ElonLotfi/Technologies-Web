@@ -1,51 +1,28 @@
 <template>
   <div>
-    <form @submit.prevent="modifyRestaurant($event)">
-      <md-field>
-        <label>Nom</label>
-        <md-input v-model="this.restaurant.name"></md-input>
-      </md-field>
+    <form @submit.prevent="handleSubmit($event)">
+      <input name="nom" type="text" required v-model="restaurant.name" />
+      <input name="cuisine" type="text" required v-model="restaurant.cuisine" />
+      <input name="borough" type="text" required v-model="restaurant.borough" />
 
-      <md-field>
-        <label>Cuisine</label>
-        <md-input v-model="this.restaurant.cuisine"></md-input>
-      </md-field>
-      <md-field>
-        <label>building</label>
-        <md-input v-model="this.restaurant.address.building"></md-input>
-      </md-field>
-      <md-field>
-        <label>street</label>
-        <md-input v-model="this.restaurant.address.street"></md-input>
-      </md-field>
-      <md-field>
-        <label>zipcode</label>
-        <md-input v-model="this.restaurant.address.zipcode"></md-input>
-      </md-field>
-      <md-field>
-        <label>Borough</label>
-        <md-input v-model="this.restaurant.borough"></md-input>
-      </md-field>
       <button>Modifier</button>
     </form>
   </div>
 </template>
 
 <script>
+import { restaurantService } from "../services/restaurantService";
+
 export default {
   name: "Restaurant",
   mounted() {
-    this.getRestaurant();
+    this.fetchOneRestaurant();
   },
   data: function () {
     return {
-      restaurant:
-        {
-          name :"test" ,
-          
+      restaurant: {
 
-        }
-      ,
+      },
     };
   },
 
@@ -57,45 +34,39 @@ export default {
 
   methods: {
     // REQUETES PUT
-    modifyRestaurant(event) {
-      // Pour éviter que la page ne se ré-affiche
-      //event.preventDefault();
-
-      // Récupération du formulaire. Pas besoin de document.querySelector
-      // ou document.getElementById puisque c'est le formulaire qui a généré
-      // l'événement
-      let form = event.target;
-      // Récupération des valeurs des champs du formulaire
-      // en prévision d'un envoi multipart en ajax/fetch
-      let donneesFormulaire = new FormData(form);
-
-      // d'un champs d'un formulaire
-      // comme cela, si on connait le nom
-      // du champ (valeur de son attribut name)
-
-      let url = "http://127.0.0.1:8080/api/restaurants/" + this.id;
-
-      fetch(url, {
-        method: "PUT",
-        body: donneesFormulaire,
-      })
+    handleSubmit() {
+      restaurantService
+        .editRestaurant(event, this.id)
         .then((responseJSON) => {
           responseJSON.json().then((res) => {
-            console.log(res.restaurant);
+            console.log(res);
+            this.fetchOneRestaurant();
+
           });
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    getRestaurant() {
-      let url = "http://127.0.0.1:8080/api/restaurants/" + this.id;
-      fetch(url).then((responseJSON) => {
-        responseJSON.json().then((res) => {
-          console.log(res.restaurant);
-          this.restaurant = res.restaurant;
+
+    async fetchOneRestaurant() {
+      await restaurantService
+        .fetchOneRestaurants(this.id)
+        .then((responseJSON) => {
+          responseJSON.json().then((res) => {
+            console.log(res.restaurant);
+            this.restaurant = res.restaurant;
+          });
         });
-      });
+    },
+    getValidationClass(fieldName) {
+      const field = this.$v.restaurant[fieldName];
+
+      if (field) {
+        return {
+          "md-invalid": field.$invalid && field.$dirty,
+        };
+      }
     },
   },
 };

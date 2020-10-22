@@ -2,24 +2,27 @@
   <div>
     <md-table>
       <md-table-row>
+        <md-table-head md-numeric>ID</md-table-head>
         <md-table-head>Nom</md-table-head>
         <md-table-head>Cuisine</md-table-head>
+        <md-table-head>Action</md-table-head>
       </md-table-row>
-      <tbody>
-        <md-table-row v-for="(r, index) in restaurants" :key="index">
-          <md-table-cell>{{ r.name }}</md-table-cell>
-          <md-table-cell>{{ r.cuisine }}</md-table-cell>
-          <md-table-cell>
-            <button
-              v-on:click="deleteRestaurant(r)"
-              class="favorite styled"
-              type="button"
-            >
-              supprimé
-            </button>
-          </md-table-cell>
-        </md-table-row>
-      </tbody>
+
+      <md-table-row v-for="(r, index) in restaurants" :key="index">
+        <md-table-cell md-numeric>{{index}}</md-table-cell>
+        <md-table-cell>{{ r.name }}</md-table-cell>
+        <md-table-cell>{{ r.cuisine }}</md-table-cell>
+        <md-table-cell
+          ><button
+            v-on:click="deleteRestaurant(r)"
+            class="favorite styled"
+            type="button"
+          >
+            Supprimé
+          </button>
+          <router-link :to="'/Restaurant/'+ r._id">Detail</router-link></md-table-cell
+        >
+      </md-table-row>
     </md-table>
   </div>
 </template>
@@ -27,7 +30,7 @@
 <script>
 export default {
   name: "TableSort",
-  props: ["restaurants", "deleteRestaurant"],
+  props: ["restaurants", "deleteRestaurant", "getRestaurantsFromServer"],
   data: () => ({
     users: [
       {
