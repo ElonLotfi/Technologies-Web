@@ -1,44 +1,57 @@
 <template>
-  <div>
-    <form @submit.prevent="ajouterRestaurant($event)">
-      <input name="nom" type="text" required v-model="nom" />
-      <input name="cuisine" type="text" required v-model="cuisine" />
+  <v-app>
+    <div class="vapp">
+      <v-container class="grey lighten-5">
+        <v-row>
+          <v-col>
+            <v-card class="search" outlined tile>
+              {{ this.nbrRestaurant }} - {{ this.nbrPage }} - {{ pageSize }}
+            </v-card>
+          </v-col>
 
-      <button>Ajouter</button>
-    </form>
+          <v-spacer></v-spacer>          <v-spacer></v-spacer>
 
-    <h1>Nombre de restaurants : {{ this.nbrRestaurant }}</h1>
-    <h1>Nombre total de pages : {{ this.nbrPage }}</h1>
 
-    <p>
-      nombre de restaurant par page :
-      <input
-        type="range"
-        min="5"
-        max="100"
-        value="5"
-        v-model="pageSize"
-        @input="getRestaurantsFromServer()"
-      />{{ pageSize }}
-    </p>
+          <v-col>
+            <v-card class="search" outlined tile>
+              <v-text-field
+              class="search"
+                v-model="nameSearch"
+                flat
+                hide-details
+                label="Chercher"
+                @input="searchRestaurant()"
+                prepend-inner-icon="mdi-magnify"
+                solo-inverted
+              ></v-text-field>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <br /><br />
+      <br /><br />
 
-    <div align="center">
-      <label>
-        chercher un restaurant :
-        <input
-          @input="searchRestaurant()"
-          type="text"
-          required
-          v-model="nameSearch"
-        />
-      </label>
+      <br /><br />
+
+      <div class="stylo">
+        <v-slider
+          class="test"
+          min="5"
+          max="100"
+          value="5"
+          @input="getRestaurantsFromServer()"
+          v-model="pageSize"
+          thumb-label="always"
+        ></v-slider>
+        <br /><br />
+      </div>
+
+      <Table
+        v-bind:restaurants="this.restaurants"
+        v-bind:deleteRestaurant="deleteRestaurant"
+      ></Table>
     </div>
-
-    <Table
-      v-bind:restaurants="this.restaurants"
-      v-bind:deleteRestaurant="deleteRestaurant"
-    ></Table>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -80,7 +93,7 @@ export default {
           .then((responseJSON) => {
             responseJSON.json().then((res) => {
               // console.log("the service work also ! " + res.msg);
-              //console.log(res.data);
+              console.log(res.data);
               this.restaurants = res.data;
               this.nbrRestaurant = res.count;
               this.nbrPage = Math.round(this.nbrRestaurant / this.pageSize);
@@ -112,21 +125,22 @@ export default {
       this.getRestaurantsFromServer();
       this.nameSearch = "";
     }, 600),
-    //// Ajouter un restaurant dans la base de donnée
-    ajouterRestaurant(event) {
-     restaurantService.addRestaurant(event).then(() => {
-        console.log("restaurant ajouté monsieur lotfi");
-        this.getRestaurantsFromServer();
-      });
-      this.nom = "";
-      this.cuisine = "";
-    },
-    getColor(index) {
-      return index % 2 ? "lightBlue" : "pink";
-    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.test {
+  width: 600px;
+  margin: 0 auto;
+  background-color: white;
+}
+.search {
+  margin-top: 600 px;
+  height: 300 px;
+  width: 400 px;
+  margin: 0 auto;
+  background-color: white;
+}
+</style>

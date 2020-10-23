@@ -1,9 +1,37 @@
 <template>
   <div>
     <form @submit.prevent="handleSubmit($event)">
-      <input name="nom" type="text" required v-model="restaurant.name" />
-      <input name="cuisine" type="text" required v-model="restaurant.cuisine" />
-      <input name="borough" type="text" required v-model="restaurant.borough" />
+      <md-table>
+        <md-table-row>
+          <md-table-head
+            >nom
+            <input name="nom" type="text" required v-model="restaurant.name" />
+          </md-table-head>
+        </md-table-row>
+
+        <md-table-row>
+          <md-table-head
+            >cuisine
+            <input
+              name="cuisine"
+              type="text"
+              required
+              v-model="restaurant.cuisine"
+            />
+          </md-table-head>
+        </md-table-row>
+        <md-table-row>
+          <md-table-head
+            >borough
+            <input
+              name="borough"
+              type="text"
+              required
+              v-model="restaurant.borough"
+            />
+          </md-table-head>
+        </md-table-row>
+      </md-table>
 
       <button>Modifier</button>
     </form>
@@ -20,9 +48,7 @@ export default {
   },
   data: function () {
     return {
-      restaurant: {
-
-      },
+      restaurant: {},
     };
   },
 
@@ -41,7 +67,6 @@ export default {
           responseJSON.json().then((res) => {
             console.log(res);
             this.fetchOneRestaurant();
-
           });
         })
         .catch((err) => {

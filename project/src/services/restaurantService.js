@@ -30,17 +30,7 @@ import {API_URL , API_FETCH_URL} from "./config"
       method: "POST",
       body: donneesFormulaire,
     })
-      .then((responseJSON) => {
-        responseJSON.json().then((res) => {
-          console.log("done !");
-          console.log(res.msg);
-          //this.getRestaurantsFromServer(); // mise a jour de la vue
-        });
-      })
-      .catch((err) => {
-        console.log(err.msg);
-      });
-
+      
 
   }
 
@@ -60,8 +50,6 @@ import {API_URL , API_FETCH_URL} from "./config"
         console.log(err.msg);
       });
   }
-
-
 
   function fetchOneRestaurants(id) {
     return fetch(API_URL + id)

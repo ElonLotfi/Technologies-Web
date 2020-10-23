@@ -1,16 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
 import VueRouter from 'vue-router'
 import restaurantList from "./components/restaurantList.vue";
 import Restaurant from "./components/Restaurant.vue"
+import AddRestaurant from "./components/AddRestaurant.vue"
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css'
 
 
-
-Vue.use(VueMaterial)
 Vue.use(VueRouter)
+Vue.use(Vuetify)
 
 
 
@@ -25,13 +24,19 @@ const router = new VueRouter(
     {
       path: '/Restaurant/:id',
       component: Restaurant
+    },
+    {
+      path: '/Addrestaurant/',
+      component: AddRestaurant
     }],
-    mode :"history"
+    mode: "history"
 
   }
 )
 
 new Vue({
   router,
+
+  vuetify: new Vuetify(),
   render: h => h(App),
 }).$mount('#app')
