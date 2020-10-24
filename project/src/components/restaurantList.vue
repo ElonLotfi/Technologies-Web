@@ -1,25 +1,26 @@
 <template>
   <v-app>
     <div class="vapp">
-      <v-container class="grey lighten-5">
+      <v-container class="information">
         <v-row>
           <v-col>
-            <v-card class="search" outlined tile>
-              {{ this.nbrRestaurant }} - {{ this.nbrPage }} - {{ pageSize }}
-            </v-card>
+            <Information
+              v-bind:nbrRestaurant="this.nbrRestaurant"
+              v-bind:nbrPage="this.nbrPage"
+              v-bind:pageSize="this.pageSize"
+            />
           </v-col>
 
-          <v-spacer></v-spacer>          <v-spacer></v-spacer>
-
+          <v-spacer></v-spacer> <v-spacer></v-spacer>
 
           <v-col>
             <v-card class="search" outlined tile>
               <v-text-field
-              class="search"
+                class="search"
                 v-model="nameSearch"
                 flat
                 hide-details
-                label="Chercher"
+                label="Chercher un restaurant"
                 @input="searchRestaurant()"
                 prepend-inner-icon="mdi-magnify"
                 solo-inverted
@@ -50,11 +51,21 @@
         v-bind:restaurants="this.restaurants"
         v-bind:deleteRestaurant="deleteRestaurant"
       ></Table>
+
+      <div class="text-center">
+        <v-btn class="btn success" v-on:click="previousPage()" 
+          >Precedent</v-btn
+        >
+        <v-btn class="btn success" v-on:click="nextPage()" type="v-btn"
+          >Suivant</v-btn
+        >
+      </div>
     </div>
   </v-app>
 </template>
 
 <script>
+import Information from "./Information";
 import Table from "./Table";
 import _ from "lodash";
 import { restaurantService } from "../services/restaurantService";
@@ -62,6 +73,7 @@ export default {
   name: "restaurantList",
   components: {
     Table,
+    Information,
   },
   props: {
     msg: String,
@@ -142,5 +154,16 @@ export default {
   width: 400 px;
   margin: 0 auto;
   background-color: white;
+}
+.information {
+  background-color: white;
+}
+.btn{
+   color: white;
+  display: inline-block;
+  margin: 0 1%;
+  width: 100px;
+  height: 50px;
+  margin-top: -200px;
 }
 </style>

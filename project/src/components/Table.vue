@@ -1,47 +1,61 @@
 <template>
-<v-app>
-
-  <div>
-    <v-simple-table>
-       <template v-slot:default>
-      <tr>
-        <th md-numeric>ID</th>
-        <th>Nom</th>
-        <th>Cuisine</th>
-        <th>Action</th>
-      </tr>
-
-      <tr v-for="(r, index) in restaurants" :key="index">
-        <td md-numeric>{{ index }}</td>
-        <td>{{ r.name }}</td>
-        <td>{{ r.cuisine }}</td>
-        <td
-          ><button
-            v-on:click="deleteRestaurant(r)"
-            class="favorite styled"
-            type="button"
-          >
-            Supprimé
-          </button>
-          <router-link :to="'/Restaurant/' + r._id"
-            >Detail</router-link
-          ></td
-        >
-      </tr>
-          </template>
+  <v-app>
+    <v-simple-table >
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left">Name</th>
+            <th class="text-left">Cuisine</th>
+            <th class="text-left">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(r, index) in restaurants" :key="index">
+            <td>{{ r.name }}</td>
+            <td>{{ r.cuisine }}</td>
+            <td>
+              <v-btn
+                class="router error"
+                v-on:click="deleteRestaurant(r)"
+                type="v-btn"
+              >
+                Supprimé
+              </v-btn>
+              <router-link
+                class="router success"
+                tag="v-btn"
+                :to="'/Restaurant/' + r._id"
+                >Detail</router-link
+              >
+            </td>
+          </tr>
+        </tbody>
+      </template>
     </v-simple-table>
-   </div>
-   </v-app>
-
-
+  </v-app>
 </template>
 
 <script>
 export default {
-  name: "TableSort",
   props: ["restaurants", "deleteRestaurant", "getRestaurantsFromServer"],
-  data: () => ({
-    users: [],
-  }),
+  data() {
+    return {};
+  },
 };
 </script>
+
+<style scoped>
+.router {
+  color: white;
+  display: inline-block;
+  margin: 0 1%;
+  width: 100px;
+  height: 50px;
+}
+
+.group {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+}
+</style>
