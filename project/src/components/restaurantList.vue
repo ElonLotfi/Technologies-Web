@@ -30,35 +30,42 @@
         </v-row>
       </v-container>
       <br /><br />
-      <br /><br />
+      <div v-if="this.nbrRestaurant > 0 && nbrPage > 1">
+        <div class="stylo">
+          <v-slider
+            class="test"
+            min="5"
+            max="100"
+            value="5"
+            @input="getRestaurantsFromServer()"
+            v-model="pageSize"
+            thumb-label="always"
+          ></v-slider>
+        </div>
+      </div>
+      <div v-else><br /><br /><br /><br /><br /><br /><br /><br /></div>
 
-      <br /><br />
-
-      <div class="stylo">
-        <v-slider
-          class="test"
-          min="5"
-          max="100"
-          value="5"
-          @input="getRestaurantsFromServer()"
-          v-model="pageSize"
-          thumb-label="always"
-        ></v-slider>
-        <br /><br />
+      <div class="div1">
+        <Table
+          v-bind:restaurants="this.restaurants"
+          v-bind:deleteRestaurant="deleteRestaurant"
+          v-bind:nbrRestaurant="this.nbrRestaurant"
+        >
+        </Table>
       </div>
 
-      <Table
-        v-bind:restaurants="this.restaurants"
-        v-bind:deleteRestaurant="deleteRestaurant"
-      ></Table>
-
-      <div class="text-center">
-        <v-btn class="btn success" v-on:click="previousPage()" 
-          >Precedent</v-btn
-        >
-        <v-btn class="btn success" v-on:click="nextPage()" type="v-btn"
-          >Suivant</v-btn
-        >
+      <div v-if="this.nbrPage > 1">
+        <div class="stylo">
+          <div class="div2">
+            <v-btn class="btn success" v-on:click="previousPage()"
+              >Precedent</v-btn
+            >
+            <v-btn class="btn success" v-on:click="nextPage()" type="v-btn"
+              >Suivant</v-btn
+            >
+          </div>
+          <br /><br />
+        </div>
       </div>
     </div>
   </v-app>
@@ -158,12 +165,25 @@ export default {
 .information {
   background-color: white;
 }
-.btn{
-   color: white;
+.btn {
+  color: red;
   display: inline-block;
   margin: 0 1%;
   width: 100px;
   height: 50px;
-  margin-top: -200px;
+  padding: 10px 10px;
+  padding-bottom: -1000px;
+}
+.div1 {
+  margin-left: 200px;
+  margin-right: 1000px;
+  width: 1300px;
+}
+.div2 {
+  margin-left: 650px;
+  width: 800px;
+}
+.diver {
+  margin: 5 auto;
 }
 </style>

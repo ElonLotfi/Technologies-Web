@@ -1,9 +1,10 @@
 <template>
   <v-app
     ><br />
-    <h1 class="table">Ajouter le restaurant</h1>
+    <h1 class="table deep-purple accent-4">Ajouter le restaurant</h1>
+
     <br /><br />
-    <v-form  @submit.prevent="handleSubmit($event)">
+    <v-form @submit.prevent="handleSubmit($event)">
       <v-text-field
         class="test"
         v-model="restaurant.name"
@@ -51,9 +52,7 @@
         required
       ></v-text-field>
 
-      <v-btn type="submit" color="success btn" >
-        Validate
-      </v-btn>
+      <v-btn type="submit" color="success btn"> Validate </v-btn>
     </v-form>
   </v-app>
 </template>
@@ -119,6 +118,10 @@ export default {
 .table {
   text-align: center;
   margin-top: 0px;
+  width: 450px;
+  margin-left: 600px;
+  border-radius: 10px;
+  color: white;
 }
 .btn {
   margin: 0 auto;

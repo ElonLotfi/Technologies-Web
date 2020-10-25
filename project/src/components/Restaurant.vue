@@ -1,7 +1,11 @@
 <template>
   <v-app
     ><br />
-    <h1 class="table">Modifer le restaurant</h1>
+
+
+
+    
+    <h1 class="title deep-purple accent-4">Modifier un restaurant</h1>
     <br /><br />
     <v-form ref="form" @submit.prevent="handleSubmit($event)" lazy-validation>
       <v-text-field
@@ -146,5 +150,15 @@ export default {
   width: 100px;
   height: 50px;
   text-align: center;
+}
+.title
+{
+  height: 30px;
+    text-align: center;
+  margin-top: 0px;
+  width: 450px;
+  margin-left: 600px;
+  border-radius: 10px;
+  color: white;
 }
 </style>
