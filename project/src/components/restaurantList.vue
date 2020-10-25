@@ -43,15 +43,20 @@
           ></v-slider>
         </div>
       </div>
-      <div v-else><br /><br /><br /><br /><br /><br /><br /><br /></div>
+      <div v-else><br /><br /><br /><br /><br /></div>
 
-      <div class="div1">
-        <Table
-          v-bind:restaurants="this.restaurants"
-          v-bind:deleteRestaurant="deleteRestaurant"
-          v-bind:nbrRestaurant="this.nbrRestaurant"
-        >
-        </Table>
+      <div v-if="this.loader == true">
+        <Loader></Loader>
+      </div>
+      <div v-else>
+        <div class="div1">
+          <Table
+            v-bind:restaurants="this.restaurants"
+            v-bind:deleteRestaurant="deleteRestaurant"
+            v-bind:nbrRestaurant="this.nbrRestaurant"
+          >
+          </Table>
+        </div>
       </div>
 
       <div v-if="this.nbrPage > 1">
@@ -73,6 +78,8 @@
 
 <script>
 import Information from "./Information";
+import Loader from "./Loader";
+
 import Table from "./Table";
 import _ from "lodash";
 import { restaurantService } from "../services/restaurantService";
@@ -81,6 +88,7 @@ export default {
   components: {
     Table,
     Information,
+    Loader,
   },
   props: {
     msg: String,
@@ -97,6 +105,7 @@ export default {
       pageSize: 10,
       nbrPage: 0, // ici le nombre de page total
       nameSearch: "",
+      loader: true,
     };
   },
 
@@ -111,6 +120,8 @@ export default {
           .fetchRestaurants(this.currentPage, this.pageSize, this.nameSearch)
           .then((responseJSON) => {
             responseJSON.json().then((res) => {
+                            this.loader = false;
+
               // console.log("the service work also ! " + res.msg);
               console.log(res.data);
               this.restaurants = res.data;
@@ -126,24 +137,32 @@ export default {
       // il manque de preciser la limite de pagination
       if (this.currentPage === this.nbrPage) return;
       this.currentPage++;
+      this.loader = true;
+
       this.getRestaurantsFromServer();
     },
     async previousPage() {
       this.currentPage--;
+      this.loader = true;
+
       this.getRestaurantsFromServer();
     },
 
     deleteRestaurant(r) {
       restaurantService.deleteRestaurant(r).then(() => {
         console.log("restaurant supprimé monsieur lotfi");
+        this.loader = true;
+
         this.getRestaurantsFromServer();
       });
     },
     // chercher un restaurant
     searchRestaurant: _.debounce(function () {
+      this.loader = true;
+
       this.getRestaurantsFromServer();
       this.nameSearch = "";
-    }, 600),
+    }, 200),
   },
 };
 </script>

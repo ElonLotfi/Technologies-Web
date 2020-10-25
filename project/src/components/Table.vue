@@ -1,7 +1,11 @@
 <template>
   <v-app>
+
+
+  
+
     <div v-if="this.nbrRestaurant > 0">
-      <v-simple-table>
+      <v-simple-table class="">
         <template v-slot:default>
           <thead>
             <tr>
@@ -35,8 +39,7 @@
       </v-simple-table>
     </div>
     <div v-else>
-         <h1 class="table deep-purple accent-4">aucun restaurant disponible</h1>
-
+      <h1 class="table deep-purple accent-4">aucun restaurant disponible</h1>
     </div>
   </v-app>
 </template>
@@ -49,8 +52,11 @@ export default {
     "getRestaurantsFromServer",
     "nbrRestaurant",
   ],
+
+
   data() {
-    return {};
+    return {
+    };
   },
 };
 </script>
