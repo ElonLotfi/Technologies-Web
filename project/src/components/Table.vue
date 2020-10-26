@@ -1,9 +1,5 @@
 <template>
   <v-app>
-
-
-  
-
     <div v-if="this.nbrRestaurant > 0">
       <v-simple-table class="">
         <template v-slot:default>
@@ -19,22 +15,17 @@
               <td>{{ r.name }}</td>
               <td>{{ r.cuisine }}</td>
               <td>
-                <v-btn
-                  class="router error"
-                  v-on:click="deleteRestaurant(r)"
-                  type="v-btn"
+                <v-icon v-on:click="deleteRestaurant(r)" class="icon"
+                  >delete</v-icon
                 >
-                  Supprimé
-                </v-btn>
-                <router-link
-                  class="router success"
-                  tag="v-btn"
-                  :to="'/Restaurant/' + r._id"
-                  >Modifier</router-link
+
+                <router-link tag="icon" :to="'/RestaurantDetail/' + r._id">
+                  <v-icon class="icon">remove_red_eye</v-icon></router-link
                 >
               </td>
             </tr>
           </tbody>
+      
         </template>
       </v-simple-table>
     </div>
@@ -46,17 +37,18 @@
 
 <script>
 export default {
+  components: {
+  },
   props: [
     "restaurants",
     "deleteRestaurant",
     "getRestaurantsFromServer",
     "nbrRestaurant",
+    
   ],
 
-
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>

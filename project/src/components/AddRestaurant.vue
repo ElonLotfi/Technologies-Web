@@ -3,7 +3,7 @@
     ><br />
     <h1 class="table deep-purple accent-4">Ajouter le restaurant</h1>
 
-    <br /><br />
+    <br /><br /><br /><br />
     <v-form @submit.prevent="handleSubmit($event)">
       <v-text-field
         class="test"
@@ -26,29 +26,6 @@
         v-model="restaurant.borough"
         :counter="50"
         label="arrondissement"
-        required
-      ></v-text-field>
-
-      <p class="table">Adresse</p>
-      <v-text-field
-        class="test"
-        v-model="restaurant.address['building']"
-        :counter="50"
-        label="bâtiment"
-        required
-      ></v-text-field>
-      <v-text-field
-        class="test"
-        v-model="restaurant.address['street']"
-        :counter="50"
-        label="rue"
-        required
-      ></v-text-field>
-      <v-text-field
-        class="test"
-        v-model="restaurant.address['zipcode']"
-        :counter="50"
-        label="code postal"
         required
       ></v-text-field>
 
@@ -76,7 +53,6 @@ export default {
   },
 
   methods: {
-    // REQUETES PUT
 
     handleSubmit(event) {
       restaurantService
@@ -84,8 +60,7 @@ export default {
         .then((responseJSON) => {
           responseJSON.json().then((res) => {
             console.log("done !");
-            console.log(res.msg);
-            //this.getRestaurantsFromServer(); // mise a jour de la vue
+            console.log(res);
           });
         })
         .catch((err) => {

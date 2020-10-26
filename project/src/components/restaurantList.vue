@@ -56,20 +56,13 @@
             v-bind:nbrRestaurant="this.nbrRestaurant"
           >
           </Table>
-        </div>
-      </div>
 
-      <div v-if="this.nbrPage > 1">
-        <div class="stylo">
-          <div class="div2">
-            <v-btn class="btn success" v-on:click="previousPage()"
-              >Precedent</v-btn
-            >
-            <v-btn class="btn success" v-on:click="nextPage()" type="v-btn"
-              >Suivant</v-btn
-            >
+          <div v-if="this.nbrPage > 1">
+            <Pagination
+              v-bind:nextPage="this.nextPage"
+              v-bind:previousPage="this.previousPage"
+            ></Pagination>
           </div>
-          <br /><br />
         </div>
       </div>
     </div>
@@ -79,6 +72,7 @@
 <script>
 import Information from "./Information";
 import Loader from "./Loader";
+import Pagination from "./Pagination";
 
 import Table from "./Table";
 import _ from "lodash";
@@ -89,6 +83,7 @@ export default {
     Table,
     Information,
     Loader,
+    Pagination,
   },
   props: {
     msg: String,
@@ -110,7 +105,6 @@ export default {
   },
 
   mounted() {
-    console.log("avant rendu !");
     this.getRestaurantsFromServer();
   },
   methods: {
@@ -120,7 +114,7 @@ export default {
           .fetchRestaurants(this.currentPage, this.pageSize, this.nameSearch)
           .then((responseJSON) => {
             responseJSON.json().then((res) => {
-                            this.loader = false;
+              this.loader = false;
 
               // console.log("the service work also ! " + res.msg);
               console.log(res.data);
