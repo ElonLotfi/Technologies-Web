@@ -2,18 +2,16 @@
   <v-app
     ><br />
 
-
-
-    
     <h1 class="title deep-purple accent-4">Modifier un restaurant</h1>
     <br /><br />
-    <v-form ref="form" @submit.prevent="handleSubmit($event)" lazy-validation>
+    <form @submit.prevent="handleSubmit($event)">
       <v-text-field
         class="test"
         v-model="restaurant.name"
         :counter="50"
         label="nom"
         required
+        name="nom"
       ></v-text-field>
 
       <v-text-field
@@ -22,23 +20,24 @@
         :counter="50"
         label="cuisine"
         required
+        name="cuisine"
       ></v-text-field>
-
       <v-text-field
         class="test"
         v-model="restaurant.borough"
         :counter="50"
-        label="arrondissement"
+        label="Arrondissement"
         required
+        name="borough"
       ></v-text-field>
 
-      <p class="table">Adresse</p>
       <v-text-field
         class="test"
-        v-model="restaurant.address['building']"
         :counter="50"
+        v-model="restaurant.address['building']"
         label="bâtiment"
         required
+        name="building"
       ></v-text-field>
       <v-text-field
         class="test"
@@ -46,19 +45,20 @@
         :counter="50"
         label="rue"
         required
+        name="street"
       ></v-text-field>
+
       <v-text-field
         class="test"
         v-model="restaurant.address['zipcode']"
         :counter="50"
         label="code postal"
         required
+        name="zipcode"
       ></v-text-field>
 
-      <v-btn type="submit"  color="success btn" class="mr-4">
-        Validate
-      </v-btn>
-    </v-form>
+      <v-btn type="submit" color="success btn"> Valider </v-btn>
+    </form>
   </v-app>
 </template>
 
@@ -71,16 +71,8 @@ export default {
   },
   data: () => ({
     valid: true,
-    name: "",
-
     restaurant: {
-      address: {
-        street: null,
-        building: null,
-        zipcode: null,
-      },
-     
-
+      address: {},
     },
   }),
   computed: {
@@ -91,18 +83,7 @@ export default {
   methods: {
     // REQUETES PUT
     handleSubmit() {
-      restaurantService
-        .editRestaurant(event, this.id)
-        .then((responseJSON) => {
-          responseJSON.json().then((res) => {
-            this.fetchOneRestaurant();
-            console.log(res);
-            
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.restaurantService.editRestaurant(event,this.id);
     },
 
     async fetchOneRestaurant() {
@@ -115,7 +96,6 @@ export default {
           });
         });
     },
- 
   },
 };
 </script>
@@ -151,10 +131,9 @@ export default {
   height: 50px;
   text-align: center;
 }
-.title
-{
+.title {
   height: 30px;
-    text-align: center;
+  text-align: center;
   margin-top: 0px;
   width: 450px;
   margin-left: 600px;

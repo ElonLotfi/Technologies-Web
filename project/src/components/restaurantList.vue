@@ -17,11 +17,13 @@
             <v-card class="search" outlined tile>
               <v-text-field
                 class="search"
+                type= "text"
                 v-model="nameSearch"
                 flat
+                tag="v-text-field"
                 hide-details
                 label="Chercher un restaurant"
-                @input="searchRestaurant()"
+                @input="getRestaurantsFromServer()"
                 prepend-inner-icon="mdi-magnify"
                 solo-inverted
               ></v-text-field>
@@ -43,7 +45,7 @@
           ></v-slider>
         </div>
       </div>
-      <div v-else><br /><br /><br /><br /><br /></div>
+      <div v-else><br /><br /></div>
 
       <div v-if="this.loader == true">
         <Loader></Loader>
@@ -58,10 +60,11 @@
           </Table>
 
           <div v-if="this.nbrPage > 1">
+            <div class="pagination">
             <Pagination
               v-bind:nextPage="this.nextPage"
               v-bind:previousPage="this.previousPage"
-            ></Pagination>
+            ></Pagination></div>
           </div>
         </div>
       </div>
@@ -106,17 +109,18 @@ export default {
 
   mounted() {
     this.getRestaurantsFromServer();
+    console.log("heheheh")
   },
   methods: {
-    async getRestaurantsFromServer() {
+     getRestaurantsFromServer() {
       try {
-        await restaurantService
+         restaurantService
           .fetchRestaurants(this.currentPage, this.pageSize, this.nameSearch)
           .then((responseJSON) => {
             responseJSON.json().then((res) => {
               this.loader = false;
 
-              // console.log("the service work also ! " + res.msg);
+              console.log("the service work also ! " + res.msg);
               console.log(res.data);
               this.restaurants = res.data;
               this.nbrRestaurant = res.count;
@@ -148,15 +152,16 @@ export default {
         this.loader = true;
 
         this.getRestaurantsFromServer();
+        this.$vToastify.success("restaurant supprimé");
+
       });
     },
     // chercher un restaurant
     searchRestaurant: _.debounce(function () {
       this.loader = true;
-
       this.getRestaurantsFromServer();
       this.nameSearch = "";
-    }, 200),
+    }, 600),
   },
 };
 </script>
@@ -198,5 +203,10 @@ export default {
 }
 .diver {
   margin: 5 auto;
+}
+.pagination{
+  margin-left: 220px;
+  margin-top:10px;
+  margin-bottom: 0px;
 }
 </style>

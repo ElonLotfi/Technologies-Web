@@ -8,7 +8,7 @@ export * from './user.service';
 
         <v-list class="grow"
           ><br />
-          <router-link class="btn" tag="button" to="/"> Home</router-link
+          <router-link class="btn" tag="button" to="/home"> Home</router-link
           ><br /><br />
           <router-link class="btn" tag="button" to="/Addrestaurant">
             Ajouter</router-link
@@ -31,7 +31,7 @@ export default {
         { title: "/", icon: "mdi-view-dashboard" },
         { title: "/Restaurant", icon: "mdi-forum" },
       ],
-      links: ["Home", "Restaurant", "Settings"],
+      links: ["home", "Restaurant", "Settings"],
       mini: true,
       drawer: true,
     };

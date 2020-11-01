@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div >
-      <v-btn class="btn success" v-on:click="previousPage()">Precedent</v-btn>
+      <v-btn  class="btn success" v-on:click="previousPage()">Precedent</v-btn>
       <v-btn class="btn2 success" v-on:click="nextPage()" type="v-btn"
         >Suivant</v-btn
       >
@@ -29,15 +29,14 @@ export default {
   display: inline-block;
   width: 100px;
   height: 50px;
-  margin-top: 30px;
-  margin-left: 450px;
+  margin-left: 50px;
 }
 .btn2 {
   display: inline-block;
   width: 100px;
   height: 50px;
-  margin-top: 30px;
-  margin-left: 100px;
+    margin-left: 50px;
+
 
 }
 </style>

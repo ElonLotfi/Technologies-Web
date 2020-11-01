@@ -1,70 +1,105 @@
 <template>
-  <v-card class="mx-auto my-12" max-width="374">
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
+  <v-app>
 
-    <v-img
-      height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-    ></v-img>
-    <v-card-title >{{ restaurant.name }}</v-card-title>
+    <div class="map">
+        <h1 class="info deep-purple accent-4">Adresse</h1>
+        <GmapMap
+          :center="{ lat: rLat, lng: rLng }"
+          :zoom="7"
+          map-type-id="terrain"
+          style="width: 350px; height: 300px"
+        >
+        </GmapMap>
 
-    <v-card-text>
-      <v-row align="center" class="mx-0">
-        <v-rating
-          :value="restaurant.grades['0'].score"
-          color="amber"
-          dense
-          half-increments
-          readonly
-          size="14"
-        ></v-rating>
+    </div>
 
-        <div class="grey--text ml-4">
-           GRADE {{ restaurant.grades["0"].grade }}
-        </div> </v-row
-      ><br />
-      <v-divider class="mx-4"></v-divider>
+    <div class="information">
+              <h1 class="info1 deep-purple accent-4">détail du restaurant</h1>
 
-      <v-card-title>Cuisine : {{ restaurant.cuisine }}</v-card-title>
-      <v-card-title>Adresse : </v-card-title>
-      <div class="vcard">Arrondissement : {{ restaurant.borough }}</div>
-      <div class="vcard"> bâtiment : {{ restaurant.address["building"] }}</div>
-      <div class="vcard">street : {{ restaurant.address["street"] }}</div>
-      <div class="vcard">street : {{ restaurant.address["zipcode"] }}</div>
-    </v-card-text>
 
-    <v-divider class="mx-4"></v-divider>
+        <v-card class="mx-auto my-12" max-width="374">
+          <template slot="progress">
+            <v-progress-linear
+              color="deep-purple"
+              height="10"
+              indeterminate
+            ></v-progress-linear>
+          </template>
 
-    <v-card-actions>
-      <router-link class="btn success" tag="v-btn" :to="'/Restaurant/' + id"
-        >Editer</router-link
-      >
-    </v-card-actions>
-  </v-card>
+          <v-img
+            height="250"
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+          ></v-img>
+          <v-card-title>{{ restaurant.name }}</v-card-title>
+
+          <v-card-text>
+            <v-row align="center" class="mx-0">
+              <v-rating
+                :value="5"
+                color="amber"
+                dense
+                half-increments
+                readonly
+                size="14"
+              ></v-rating>
+
+              <div class="grey--text ml-4">GRADE 5</div> </v-row
+            ><br />
+            <v-divider class="mx-4"></v-divider>
+
+            <v-card-title>Cuisine : {{ restaurant.cuisine }}</v-card-title>
+            <v-card-title>Adresse : </v-card-title>
+            <div class="vcard">Arrondissement : {{ restaurant.borough }}</div>
+            <div class="vcard">
+              bâtiment : {{ restaurant.address.building }}
+            </div>
+            <div class="vcard">rue : {{ restaurant.address.street }}</div>
+            <div class="vcard">
+              code postal : {{ restaurant.address.zipcode }}
+            </div>
+          </v-card-text>
+
+          <v-divider class="mx-4"></v-divider>
+
+          <v-card-actions>
+            <router-link
+              class="btn success"
+              tag="v-btn"
+              :to="'/Restaurant/' + id"
+              >Editer</router-link
+            >
+          </v-card-actions>
+        </v-card>
+
+    </div>
+
+  
+  </v-app>
 </template>
 
 <script>
 import { restaurantService } from "../services/restaurantService";
 
 export default {
+  components: {},
   mounted() {
     this.fetchOneRestaurant();
   },
+
   data: () => ({
     valid: true,
     name: "",
-
+    rLat: "",
+    rLng: "",
     restaurant: {
       address: {
-        street: null,
-        building: null,
-        zipcode: null,
+        street: "",
+        building: "",
+        zipcode: "",
+        coord: {
+          0: "",
+          1: "",
+        },
       },
       selection: 1,
       grades: {
@@ -100,8 +135,20 @@ export default {
           responseJSON.json().then((res) => {
             console.log(res.restaurant);
             this.restaurant = res.restaurant;
+            this.getLatRestaurant();
+            this.getLngRestaurant();
           });
         });
+    },
+
+    getLatRestaurant() {
+      this.rLat = this.restaurant.address.coord[0];
+      console.log(this.rLat);
+    },
+
+    getLngRestaurant() {
+      this.rLng = this.restaurant.address.coord[1];
+      console.log(this.rLng);
     },
   },
 };
@@ -148,7 +195,45 @@ export default {
   border-radius: 10px;
   color: white;
 }
-.vcard{
-    margin-left: 17px;
+.vcard {
+  margin-left: 17px;
+}
+.diiv2{
+  margin-right: 400px;
+}
+
+.information{
+  margin-left: 400px;
+  margin-top: -410px;
+}
+.map{
+  margin-left: 100px;
+  margin-top: 100px;
+}
+.table {
+  text-align: center;
+  margin-top: 10px;
+  width: 450px;
+  margin-left: 380px;
+  border-radius: 10px;
+  color: white;
+}
+.info{
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  color: white;
+  margin-left: 50px;
+  margin-bottom: 70px;
+  
+}
+.info1{
+  border-radius: 10px;
+  width: 350px;
+  text-align: center;
+  color: white;
+  margin-left: 250px;
+  margin-bottom: 10px;
+  
 }
 </style>
