@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <div class="vapp">
       <v-container class="information">
         <v-row>
           <v-col>
@@ -17,7 +16,7 @@
             <v-card class="search" outlined tile>
               <v-text-field
                 class="search"
-                type= "text"
+                type="text"
                 v-model="nameSearch"
                 flat
                 tag="v-text-field"
@@ -31,7 +30,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <br /><br />
+      <br /><br /><br /><br />
       <div v-if="this.nbrRestaurant > 0 && nbrPage > 1">
         <div class="stylo">
           <v-slider
@@ -45,37 +44,40 @@
           ></v-slider>
         </div>
       </div>
-      <div v-else><br /><br /></div>
+      <div v-else><br /><br /><br /><br /></div>
 
       <div v-if="this.loader == true">
         <Loader></Loader>
       </div>
       <div v-else>
-        <div class="div1">
+        <br /><br />
+        <div class="divOfTable">
           <Table
             v-bind:restaurants="this.restaurants"
             v-bind:deleteRestaurant="deleteRestaurant"
             v-bind:nbrRestaurant="this.nbrRestaurant"
           >
           </Table>
-
-          <div v-if="this.nbrPage > 1">
-            <div class="pagination">
-            <Pagination
-              v-bind:nextPage="this.nextPage"
-              v-bind:previousPage="this.previousPage"
-            ></Pagination></div>
-          </div>
         </div>
       </div>
-    </div>
+
+      <div v-if="this.nbrPage > 1">
+        <div class="pagination">
+          <Pagination
+            v-bind:nextPage="this.nextPage"
+            v-bind:previousPage="this.previousPage"
+            v-bind:currentPage="this.currentPage"
+            v-bind:nbrPage="this.nbrPage"
+          ></Pagination>
+        </div>
+      </div>
   </v-app>
 </template>
 
 <script>
-import Information from "./Information";
-import Loader from "./Loader";
-import Pagination from "./Pagination";
+import Information from "../useful/Information";
+import Loader from "../useful/Loader";
+import Pagination from "../useful/Pagination";
 
 import Table from "./Table";
 import _ from "lodash";
@@ -109,12 +111,12 @@ export default {
 
   mounted() {
     this.getRestaurantsFromServer();
-    console.log("heheheh")
+    console.log("heheheh");
   },
   methods: {
-     getRestaurantsFromServer() {
+    getRestaurantsFromServer() {
       try {
-         restaurantService
+        restaurantService
           .fetchRestaurants(this.currentPage, this.pageSize, this.nameSearch)
           .then((responseJSON) => {
             responseJSON.json().then((res) => {
@@ -153,7 +155,6 @@ export default {
 
         this.getRestaurantsFromServer();
         this.$vToastify.success("restaurant supprimé");
-
       });
     },
     // chercher un restaurant
@@ -192,10 +193,9 @@ export default {
   padding: 10px 10px;
   padding-bottom: -1000px;
 }
-.div1 {
-  margin-left: 200px;
-  margin-right: 1000px;
-  width: 1300px;
+.divOfTable {
+  margin-left: 330px;
+  width: max-content;
 }
 .div2 {
   margin-left: 650px;
@@ -204,9 +204,10 @@ export default {
 .diver {
   margin: 5 auto;
 }
-.pagination{
-  margin-left: 220px;
-  margin-top:10px;
+.pagination {
+  margin-left: 547px;
+  margin-top: 10px;
   margin-bottom: 0px;
 }
+
 </style>

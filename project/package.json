@@ -23,6 +23,7 @@
     "vue-faker": "^2.0.0",
     "vue-material": "^1.0.0-beta-15",
     "vue-router": "^3.4.7",
+    "vue-scrollto": "^2.20.0",
     "vue-toastify": "^1.8.0",
     "vuetify": "^2.3.15"
   },

@@ -1,17 +1,17 @@
 <template>
   <v-app class="table">
     <v-simple-table>
-      <template v-slot:default>
+      <template >
         <thead>
           <tr >
             <p class="text">{{ nbrRestaurant }}</p>
-            <th class="text-left"><v-icon class="icon">mdi-food</v-icon></th>
+            <th ><v-img  src="https://img.icons8.com/color/48/000000/fry.png"/></th>
             <p class="text">{{ nbrPage }}</p>
-            <th class="text-left">
-              <v-icon>mdi-book-open-page-variant</v-icon>
+            <th >
+              <v-img src="https://img.icons8.com/color/48/000000/literature.png"/>
             </th>
             <p class="text">{{ pageSize }}</p>
-            <th class="text-left"><v-icon>mdi-move-resize</v-icon></th>
+            <th><v-img src="https://img.icons8.com/color/48/000000/page-size.png"/></th>
           </tr>
         </thead>
       </template>
@@ -45,6 +45,11 @@ export default {
   /* hauteur du parent */
   line-height: 5em; /* hauteur de ligne (identique) */
   white-space: nowrap; /* interdiction de passer à la ligne */
+  margin-top: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 2px;
   
 }
 

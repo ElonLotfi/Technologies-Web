@@ -3,10 +3,12 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import vuefaker from 'vue-faker'
 
-import restaurantList from "./components/restaurantList.vue";
-import Restaurant from "./components/Restaurant.vue"
-import AddRestaurant from "./components/AddRestaurant.vue"
-import RestaurantDetail from "./components/RestaurantDetail"
+import restaurantList from "./components/restaurant/restaurantList.vue";
+import Restaurant from "./components/restaurant/Restaurant.vue"
+import AddRestaurant from "./components/restaurant/AddRestaurant.vue"
+import RestaurantDetail from "./components/restaurant/RestaurantDetail"
+import home from "./components/home/Home"
+
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -14,8 +16,7 @@ import VueToastify from "vue-toastify";
 import * as GmapVue from 'gmap-vue'
 
 
-
-
+var VueScrollTo = require('vue-scrollto');
 
 
 Vue.use(VueRouter)
@@ -30,6 +31,9 @@ Vue.use(GmapVue, {
   installComponents: true
 })
 
+Vue.use(VueScrollTo)
+
+
 
 
 
@@ -41,6 +45,11 @@ const router = new VueRouter(
     routes: [{
       path: '/home',
       component: restaurantList
+    },
+
+    {
+      path: '/',
+      component: home
     },
     {
       path: '/Restaurant/:id',

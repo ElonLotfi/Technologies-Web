@@ -1,32 +1,42 @@
 <template>
   <v-app>
-    <div id="app" v-if="this.nbrRestaurant > 0">
-      
+    <div v-if="this.nbrRestaurant > 0">
       <v-simple-table class="table">
         <template v-slot:default>
           <thead>
-            <tr >
+            <tr>
               <th class="text-center">Name</th>
               <th class="text-center">Cuisine</th>
+              <th class="text-center">Arrondissement</th>
+              <th class="text-center">Code postal</th>
+
               <th class="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(r, index) in restaurants" :key="index" :style="{backgroundColor:getColor(index)}">
-              <td >{{ r.name }}</td>
+            <tr v-for="(r, index) in restaurants" :key="index">
+              <td>{{ r.name }}</td>
               <td>{{ r.cuisine }}</td>
-              <td>
-                <v-icon v-on:click="deleteRestaurant(r)" class="icon"
-                  >delete</v-icon
-                >
+              <td>{{ r.borough }}</td>
+              <td>{{ r.address.zipcode }}</td>
 
-                <router-link tag="button" :to="'/RestaurantDetail/' + r._id">
-                  <v-icon class="icon">remove_red_eye</v-icon></router-link
-                >
+              <td>
+                <div>
+                  <img
+                    class="imageSpace image"
+                    v-on:click="deleteRestaurant(r)"
+                    src="https://img.icons8.com/color/48/000000/delete-forever.png"
+                    tag="button"
+                  />
+                  <router-link tag="button" :to="'/RestaurantDetail/' + r._id">
+                    <img
+                      class="image"
+                      src="https://img.icons8.com/color/48/000000/opera-glasses.png"
+                  /></router-link>
+                </div>
               </td>
             </tr>
           </tbody>
-      
         </template>
       </v-simple-table>
     </div>
@@ -38,24 +48,22 @@
 
 <script>
 export default {
-  components: {
-  },
+  components: {},
   props: [
     "restaurants",
     "deleteRestaurant",
     "getRestaurantsFromServer",
     "nbrRestaurant",
-    
   ],
 
   data() {
     return {};
   },
-  methods :{
+  methods: {
     getColor(index) {
-                return (index % 2) ? 'white' : '#F0F0F2';
-            }
-  }
+      return index % 2 ? "white" : "#F0F0F2";
+    },
+  },
 };
 </script>
 
@@ -89,5 +97,13 @@ export default {
 }
 .v-data-table-header th {
   white-space: nowrap;
+}
+
+.image {
+  width: 30px;
+  height: 30px;
+}
+.imageSpace {
+  margin-right: 10px;
 }
 </style>
