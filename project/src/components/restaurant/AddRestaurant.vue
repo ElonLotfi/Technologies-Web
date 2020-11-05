@@ -10,71 +10,72 @@
       </v-row>
     </div>
     <div class="backgroundFormulaire">
-    <div class="formulaire" id="element">
-      <div class="form">
-        <form @submit.prevent="handleSubmit($event)">
-          <v-text-field
-            class="test"
-            v-model="restaurant.name"
-            :counter="50"
-            label="nom"
-            required
-            tag="input"
-            name="nom"
-          ></v-text-field>
+      <div class="formulaire" id="element">
+        <div class="form">
+          <form @submit.prevent="handleSubmit($event)">
+            <v-text-field
+              class="test"
+              v-model="restaurant.nom"
+              :counter="50"
+              label="Nom de restaurant"
+              required
+              tag="input"
+              name="nom"
+            ></v-text-field>
 
-          <v-text-field
-            class="test"
-            v-model="restaurant.cuisine"
-            :counter="50"
-            label="cuisine"
-            required
-            tag="input"
-            name="cuisine"
-          ></v-text-field>
-          <v-text-field
-            class="test"
-            v-model="restaurant.borough"
-            :counter="50"
-            label="Arrondissement"
-            required
-            tag="input"
-            name="borough"
-          ></v-text-field>
+            <v-text-field
+              class="test"
+              v-model="restaurant.cuisine"
+              :counter="50"
+              label="Cuisine"
+              required
+              tag="input"
+              name="cuisine"
+            ></v-text-field>
+            <v-text-field
+              class="test"
+              v-model="restaurant.borough"
+              :counter="50"
+              label="Arrondissement"
+              required
+              tag="input"
+              name="borough"
+            ></v-text-field>
 
-          <v-text-field
-            class="test"
-            :counter="50"
-            label="bâtiment"
-            required
-            tag="input"
-            name="building"
-          ></v-text-field>
-          <v-text-field
-            class="test"
-            v-model="restaurant.address['street']"
-            :counter="50"
-            label="rue"
-            required
-            tag="input"
-            name="street"
-          ></v-text-field>
+            <v-text-field
+              class="test"
+              :counter="50"
+              label="Bâtiment"
+              required
+              tag="input"
+              name="building"
+              v-model="restaurant.address.building"
+            ></v-text-field>
+            <v-text-field
+              class="test"
+              v-model="restaurant.address.street"
+              :counter="50"
+              label="Rue"
+              required
+              tag="input"
+              name="street"
+            ></v-text-field>
 
-          <v-text-field
-            class="test"
-            v-model="restaurant.address['zipcode']"
-            :counter="50"
-            label="code postal"
-            required
-            tag="input"
-            name="zipcode"
-          ></v-text-field>
-          <div class="formButton">
-            <v-btn type="submit" color="btn"> Valider </v-btn>
-          </div>
-        </form>
+            <v-text-field
+              class="test"
+              v-model="restaurant.address.zipcode"
+              :counter="50"
+              label="Code postal"
+              required
+              tag="input"
+              name="zipcode"
+            ></v-text-field>
+            <div class="formButton">
+              <v-btn type="submit" color="btn"> Valider </v-btn>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   </v-app>
 </template>
@@ -100,9 +101,13 @@ export default {
       try {
         restaurantService.addRestaurant(event).then((responseJSON) => {
           responseJSON.json().then((res) => {
-            console.log("the service of adding resto work also ! " + res.msg);
-            this.$vToastify.success("Le restaurant est bien ajouté");
-
+            console.log(res);
+            this.$toast.success({
+              title: "Le restaurant",
+              message: "est bien ajouté",
+              showDuration: 200,
+              position: "bottom right",
+            });
             window.history.go(-1);
           });
         });
@@ -148,9 +153,9 @@ export default {
   margin-bottom: 100px;
   width: 100px;
   height: 50px;
-    margin-top: 15px;
+  margin-top: 15px;
 
-   position: relative;
+  position: relative;
   padding: 12px 36px;
   color: #fff;
   text-decoration: none;
@@ -167,7 +172,7 @@ export default {
 .bg {
   /* The image used */
   background: url("https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
-   no-repeat center center fixed;
+    no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -175,7 +180,7 @@ export default {
   height: 570px;
 }
 .bttn1 {
-  margin-top: 250px;
+  margin-top: 50px;
 
   position: relative;
   padding: 12px 36px;
@@ -188,21 +193,25 @@ export default {
   background: linear-gradient(90deg, #755b, #55e7fc);
 }
 .formulaire {
-  
-  margin-top: 30px;
   width: 460px;
   margin-left: 480px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 570px;
+  height: 560px;
 }
 .formButton {
   margin-left: -380px;
-  margin-top: -50px;
+  margin-top: -60px;
 }
-.backgroundFormulaire{
-
+.backgroundFormulaire {
+  background: #ababa1 no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 770px;
+  padding-top: 40px;
 }
 </style>

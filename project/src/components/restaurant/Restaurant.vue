@@ -4,69 +4,69 @@
       <v-row align="center" justify="center">
         <v-col class="vcol text-center" cols="12">
           <v-btn class="bttn1" v-scroll-to="'#element'"
-            >Mise à jour du Restaurant</v-btn
+            >Modifier un restaurant</v-btn
           >
         </v-col>
       </v-row>
     </div>
-
     <div class="backgroundFormulaire">
       <div class="formulaire" id="element">
         <div class="form">
           <form @submit.prevent="handleSubmit($event)">
             <v-text-field
               class="test"
-              v-model="restaurant.name"
               :counter="50"
-              label="nom"
+              label="Nom de restaurant"
               required
+              tag="input"
               name="nom"
             ></v-text-field>
 
             <v-text-field
               class="test"
-              v-model="restaurant.cuisine"
               :counter="50"
-              label="cuisine"
+              label="Cuisine"
               required
+              tag="input"
               name="cuisine"
             ></v-text-field>
             <v-text-field
               class="test"
-              v-model="restaurant.borough"
               :counter="50"
               label="Arrondissement"
               required
+              tag="input"
               name="borough"
             ></v-text-field>
 
             <v-text-field
               class="test"
               :counter="50"
-              v-model="restaurant.address['building']"
-              label="bâtiment"
+              label="Bâtiment"
               required
+              tag="input"
               name="building"
             ></v-text-field>
             <v-text-field
               class="test"
-              v-model="restaurant.address['street']"
               :counter="50"
-              label="rue"
+              label="Rue"
               required
+              tag="input"
               name="street"
             ></v-text-field>
 
             <v-text-field
               class="test"
-              v-model="restaurant.address['zipcode']"
               :counter="50"
-              label="code postal"
+              label="Code postal"
               required
+              tag="input"
               name="zipcode"
             ></v-text-field>
-
-            <v-btn type="submit" color="btn"> Valider </v-btn>
+            <div class="formButton">
+              <v-btn type="submit" color="btn"> Valider </v-btn>
+            </div>
           </form>
         </div>
       </div>
@@ -111,7 +111,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .test {
   width: 600px;
@@ -134,23 +133,33 @@ export default {
 .table {
   text-align: center;
   margin-top: 0px;
+  width: 450px;
+  margin-left: 380px;
+  border-radius: 10px;
+  color: white;
+  background-color: #161616;
 }
 .btn {
   margin: 0 auto;
-  margin-left: 747px;
+  margin-left: 560px;
   margin-bottom: 100px;
   width: 100px;
   height: 50px;
-  text-align: center;
+  margin-top: 15px;
+
+  position: relative;
+  padding: 12px 36px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 2px;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #755b, #55e7fc);
 }
-.title {
-  height: 30px;
-  text-align: center;
-  margin-top: 0px;
-  width: 450px;
-  margin-left: 600px;
-  border-radius: 10px;
-  color: white;
+
+.form {
+  height: 200px;
 }
 .bg {
   /* The image used */
@@ -162,9 +171,8 @@ export default {
   background-size: cover;
   height: 570px;
 }
-
 .bttn1 {
-  margin-top: 250px;
+  margin-top: 50px;
 
   position: relative;
   padding: 12px 36px;
@@ -177,32 +185,25 @@ export default {
   background: linear-gradient(90deg, #755b, #55e7fc);
 }
 .formulaire {
-  
-  margin-top: 50px;
   width: 460px;
   margin-left: 480px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 400px;
+  height: 560px;
 }
-.btn {
-  margin: 0 auto;
-  margin-left: 189px;
-  margin-bottom: 100px;
-  width: 100px;
-  height: 50px;
-    margin-top: -34px;
-
-   position: relative;
-  padding: 12px 36px;
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 18px;
-  letter-spacing: 2px;
-  border-radius: 40px;
-  background: linear-gradient(90deg, #755b, #55e7fc);
+.formButton {
+  margin-left: -380px;
+  margin-top: -60px;
+}
+.backgroundFormulaire {
+  background: #ABABA1 no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 770px;
+  padding-top: 40px;
 }
 </style>

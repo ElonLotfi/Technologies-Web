@@ -1,41 +1,62 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import vuefaker from 'vue-faker'
-
+//Components
 import restaurantList from "./components/restaurant/restaurantList.vue";
 import Restaurant from "./components/restaurant/Restaurant.vue"
 import AddRestaurant from "./components/restaurant/AddRestaurant.vue"
 import RestaurantDetail from "./components/restaurant/RestaurantDetail"
 import home from "./components/home/Home"
+import Menu from "./components/menuRestaurant/Menu.vue"
+import Team from "./components/team/Team.vue"
 
+// Les imports
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css'
+import CxltToastr from 'cxlt-vue2-toastr'
+import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
+
+//Les icons de material-design
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
-import VueToastify from "vue-toastify";
-import * as GmapVue from 'gmap-vue'
 
 
+
+
+
+// Scroll
 var VueScrollTo = require('vue-scrollto');
+Vue.use(VueScrollTo);
 
 
+// Notification
+var toastrConfigs = {
+  position: 'top right',
+  showDuration: 2000
+}
+Vue.use(CxltToastr, toastrConfigs)
+
+
+
+
+// Router
 Vue.use(VueRouter)
+// Graphic
 Vue.use(Vuetify)
-Vue.use(VueToastify);
-Vue.use(vuefaker);
-Vue.use(GmapVue, {
+
+
+
+// map Integration 
+
+import * as VueGoogleMaps from 'vue2-google-maps'
+
+Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyAi5Vi3-s_9g2b_0V8RgE41aGsuzAyL9k8',
-    libraries: 'places', // This is required if you use the Autocomplete plugin
+
   },
-  installComponents: true
+
+
 })
-
-Vue.use(VueScrollTo)
-
-
-
-
 
 
 // defenir les route
@@ -45,6 +66,10 @@ const router = new VueRouter(
     routes: [{
       path: '/home',
       component: restaurantList
+    },
+    {
+      path: '/Team',
+      component: Team
     },
 
     {
@@ -59,7 +84,10 @@ const router = new VueRouter(
       path: '/Addrestaurant/',
       component: AddRestaurant
     },
-
+    {
+      path: '/Menu',
+      component: Menu
+    },
 
     {
       path: '/RestaurantDetail/:id',

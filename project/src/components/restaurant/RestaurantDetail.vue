@@ -7,74 +7,63 @@
             >Details de restaurant</v-btn
           >
 
-          <v-btn  class="bb" v-scroll-to="'#element1'">Adresse de restaurant </v-btn>
+          <v-btn class="bb" v-scroll-to="'#element1'"
+            >Adresse de restaurant
+          </v-btn>
+
+          <v-btn class="bb1" v-scroll-to="'#element3'"
+            >Menu de Restaurant</v-btn
+          >
         </div>
       </div>
 
       <div id="element" class="fisrtElement">
-        <v-card class="mx-auto my-12" max-width="700">
-          <template slot="progress">
-            <v-progress-linear
-              color="deep-purple"
-              height="10"
-              indeterminate
-            ></v-progress-linear>
-          </template>
-
+        <div class="restaurantName">
+          <h4>{{ restaurant.name }}</h4>
+        </div>
+        <div class="restaurantImage">
           <v-img
-            height="200"
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+            src="https://images.pexels.com/photos/541216/pexels-photo-541216.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
           ></v-img>
-          <div class="name">
-            <v-card-title>{{ restaurant.name }}</v-card-title>
-          </div>
+        </div>
+        <div class="rating">
+          <v-rating
+            :value="this.score1"
+            color="amber"
+            dense
+            half-increments
+            readonly
+            size="14"
+          ></v-rating>
+        </div>
+        <div class="Grade">
+          Grade
+          <div class="colorGrade">{{ this.score1 }}</div>
+        </div>
 
-          <v-card-text>
-            <v-row align="center" class="mx-0">
-              <div class="rating">
-                <v-rating
-                  :value="5"
-                  color="amber"
-                  dense
-                  half-increments
-                  readonly
-                  size="14"
-                ></v-rating>
-              </div>
+        <div class="Score">
+          Score
+          <p class="colorGrade">{{ this.grade1 }}</p>
+        </div>
 
-              <div class="grey--text ml-4">GRADE 5</div> </v-row
-            ><br />
-            <v-divider class="mx-4"></v-divider>
-            <div class="cuisine">
-              <v-card-title>Cuisine : {{ restaurant.cuisine }}</v-card-title>
-            </div>
-            <div class="adresse">
-              <v-card-title>Adresse : </v-card-title>
-            </div>
-            <div class="address1">
-              <div class="vcard">Arrondissement : {{ restaurant.borough }}</div>
-              <div class="vcard">
-                bâtiment : {{ restaurant.address.building }}
-              </div>
-              <div class="vcard">rue : {{ restaurant.address.street }}</div>
-              <div class="vcard">
-                code postal : {{ restaurant.address.zipcode }}
-              </div>
-            </div>
-          </v-card-text>
+        <div class="cuisineType">Spécialité : {{ restaurant.cuisine }}</div>
 
-          <v-divider class="mx-4"></v-divider>
-          <div class="btnValider">
-            <v-card-actions>
-              <router-link
-                class="btn success"
-                tag="v-btn"
-                :to="'/Restaurant/' + id"
-                >Editer</router-link
-              >
-            </v-card-actions>
-          </div>
-        </v-card>
+        <div class="batiment">bâtiment : {{ restaurant.address.building }}</div>
+
+        <div class="rue">Rue : {{ restaurant.address.street }}</div>
+        <div class="arrondissement">
+          Arrondissement : {{ restaurant.borough }}
+        </div>
+
+        <div class="codePostal">
+          Code postal : {{ restaurant.address.zipcode }}
+        </div>
+
+        <div class="finalButton">
+          <router-link class="warning" tag="v-btn" :to="'/Restaurant/' + id"
+            >Editer</router-link
+          >
+        </div>
       </div>
       <div id="element1" class="secondElement">
         <div class="bg1">
@@ -85,16 +74,30 @@
               </h1>
             </v-col>
           </v-row>
+          <div class="map">
+            <GmapMap
+              v-bind:center="{
+                lat: this.pos1,
+                lng: this.pos2,
+              }"
+              v-bind:zoom="3"
+              map-type-id="terrain"
+              style="height: 400px"
+            >
+              <GmapMarker
+                v-bind:position="{
+                  lat: this.pos1,
+                  lng: this.pos2,
+                }"
+                v-bind:clickable="true"
+              />
+            </GmapMap>
+          </div>
         </div>
-        <div class="map">
-          <GmapMap
-            :center="{ lat: rLat, lng: rLng }"
-            :zoom="7"
-            map-type-id="terrain"
-            style="width: 600px; height: 400px"
-          >
-          </GmapMap>
-        </div>
+      </div>
+
+      <div id="element3" class="secondElement">
+        <Menu></Menu>
       </div>
     </div>
   </v-app>
@@ -102,9 +105,10 @@
 
 <script>
 import { restaurantService } from "../services/restaurantService";
+import Menu from "../menuRestaurant/Menu";
 
 export default {
-  components: {},
+  components: { Menu },
   mounted() {
     this.fetchOneRestaurant();
   },
@@ -112,23 +116,40 @@ export default {
   data: () => ({
     valid: true,
     name: "",
-    rLat: "",
-    rLng: "",
+    cuisine: "",
+
     restaurant: {
       address: {
         street: "",
         building: "",
         zipcode: "",
-        coord: {
-          0: "",
-          1: "",
-        },
+        coord: {},
       },
       selection: 1,
       grades: {
-        score: 0,
+        score: "",
+        grade: "",
       },
     },
+
+    center: {
+      lat: null,
+      lng: null,
+    },
+    score1: Math.floor(Math.random() * 10),
+    grade1: "B",
+
+    pos1: Math.random() * (120.12 - 1.888) + 1.888,
+    pos2: Math.random() * (120.12 - 1.888) + 1.888,
+
+    markers: [
+      {
+        position: {
+          lat: null,
+          lng: null,
+        },
+      },
+    ],
   }),
   computed: {
     id() {
@@ -158,23 +179,19 @@ export default {
           responseJSON.json().then((res) => {
             console.log(res.restaurant);
             this.restaurant = res.restaurant;
-            this.getLatRestaurant();
-            this.getLngRestaurant();
+            if (res.restaurant.grades["0"].score !== null) {
+              this.score1 = res.restaurant.grades["0"].score;
+              this.grade1 = res.restaurant.grades["0"].grade;
+            }
+            if (this.restaurant.address.coord[0] !== null) {
+              this.pos1 = this.restaurant.address.coord[0];
+              this.pos2 = this.restaurant.address.coord[1];
+            }
+
+            // this.markers[0].lat =10;
+            // this.markers[0].lng = 10;
           });
         });
-    },
-
-    getLatRestaurant() {
-      this.rLat = this.restaurant.address.coord[0];
-      this.rLat = 40.6661671;
-
-      console.log(this.rLat);
-    },
-
-    getLngRestaurant() {
-      this.rLng = this.restaurant.address.coord[1];
-      this.rLng = -74.1136198;
-      console.log(this.rLng);
     },
   },
 };
@@ -286,7 +303,7 @@ export default {
   background-image: url("https://images.unsplash.com/photo-1524491561693-20766fdcd934?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
 
   /* Full height */
-  height: 250px;
+  height: 183px;
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -294,8 +311,10 @@ export default {
   background-size: cover;
 }
 .map {
-  margin-left: 320px;
-  margin-top: 3px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 .bttn1 {
@@ -307,9 +326,7 @@ export default {
 .appback {
   background-color: #f9f9fa;
 }
-.rating {
-  margin-left: 270px;
-}
+
 .name {
   margin-left: 270px;
 }
@@ -326,8 +343,11 @@ export default {
   margin-left: 170px;
 }
 .test1 {
-  margin-top: 50px;
-  font-size: 600px;
+  margin-top: 24px;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: 25px;
+  margin-left: 20px;
 }
 .centre {
   text-align: center;
@@ -342,8 +362,8 @@ export default {
   font-size: 18px;
   letter-spacing: 2px;
   border-radius: 40px;
-  background: linear-gradient(90deg,#755b,#55e7fc);
-
+  background: linear-gradient(90deg, #755b, #55e7fc);
+  margin-right: 50px;
 }
 .bb1 {
   margin-right: 50px;
@@ -355,8 +375,7 @@ export default {
   font-size: 18px;
   letter-spacing: 2px;
   border-radius: 40px;
-  background: linear-gradient(90deg,#755b,#55e7fc);
-
+  background: linear-gradient(90deg, #755b, #55e7fc);
 }
 .fisrtElement {
   -webkit-background-size: cover;
@@ -371,5 +390,108 @@ export default {
   -o-background-size: cover;
   background-size: cover;
   height: 620px;
+}
+.restaurantName {
+  text-align: center;
+  margin-top: 7px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: black;
+  font-size: 25px;
+  font-weight: 200;
+}
+
+.rating {
+  margin-left: 640px;
+}
+.Grade {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 20px;
+  font-weight: lighter;
+  font-size: larger;
+  text-transform: uppercase;
+  font-size: 25px;
+}
+.Score {
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 20px;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: 25px;
+}
+.restaurantImage {
+  overflow: hidden;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  width: 400px;
+  height: 200px;
+  margin-left: 480px;
+  margin-top: 10px;
+  text-align: center;
+}
+.cuisineType {
+  margin-top: -12px;
+  text-align: center;
+  font-weight: lighter;
+  margin-left: 40px;
+}
+.arrondissement {
+  margin-top: 5px;
+  text-align: center;
+  font-weight: lighter;
+  margin-left: 40px;
+}
+.batiment {
+  margin-top: 5px;
+  text-align: center;
+  font-weight: lighter;
+  margin-left: 28px;
+}
+.rue {
+  margin-top: 5px;
+  text-align: center;
+  font-weight: lighter;
+  margin-left: 29px;
+}
+
+.codePostal {
+  margin-top: 5px;
+  text-align: center;
+  font-weight: lighter;
+  margin-left: 29px;
+}
+.colorGrade {
+  color: #42bfd0;
+}
+.finalButton {
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 32px;
+}
+
+.title h4 {
+  text-transform: capitalize;
+  font-size: 36px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.title h4 span p {
+  display: block;
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: -10px;
+}
+.title h4:before {
+  position: absolute;
+  content: "";
+  width: 100px;
+  height: 2px;
+  background-color: #20bcff;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

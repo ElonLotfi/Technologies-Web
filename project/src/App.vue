@@ -1,31 +1,35 @@
 export * from './user.service';
 
 <template>
-  <v-app >
+  <v-app>
     <div class="app">
-    <nav>
-      <ul class="menu">
-        <li>
-          <a href="#!"><router-link tag="a" to="/">Accueil</router-link></a>
-        </li>
-        <li>
-          <a href="#!">
-            <router-link tag="a" to="/home">Restaurant</router-link></a
-          >
-        </li>
-        <li>
-          <a href="#!"
-            ><router-link tag="a" to="/Addrestaurant">
-              Ajouter</router-link
-            ></a
-          >
-        </li>
-      </ul>
-    </nav>
+      <nav>
+        <ul class="menu">
+          <li>
+            <a href="#!"><router-link tag="a" to="/"><img class="team" src="https://img.icons8.com/color/48/000000/home.png"/></router-link></a>
+          </li>
+          <li>
+            <a href="#!">
+              <router-link tag="a" to="/home"><img class="team" src="https://img.icons8.com/dusk/64/000000/waiter.png"/></router-link></a
+            >
+          </li>
+          <li>
+            <a href="#!"
+              ><router-link tag="a" to="/Addrestaurant">
+                <img  class="team" src="https://img.icons8.com/flat_round/64/000000/plus.png"/></router-link
+              ></a
+            >
+          </li>
+      
+          <li>
+            <a href="#!"> <router-link tag="a" to="/Team"><img class="team" src="https://img.icons8.com/nolan/64/developer.png"/></router-link></a>
+          </li>
+        </ul>
+      </nav>
 
-    <v-main>
-      <router-view />
-    </v-main>
+      <v-main>
+        <router-view />
+      </v-main>
     </div>
   </v-app>
 </template>
@@ -48,9 +52,7 @@ export default {
 
 <style lang="scss" >
 .app {
-
-  background-color: #1C1D22;
-
+  background-color: #1c1d22;
 }
 
 .vcard {
@@ -60,19 +62,15 @@ export default {
   background-color: white;
 }
 
-
-
-
 .menu {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 720px;
+  max-width: 700px;
   margin: 0 auto;
   height: 80px;
   list-style: none;
-  background-color: #1C1D22;
-  
+  background-color: #1c1d22;
 }
 
 .menu li {
@@ -80,6 +78,7 @@ export default {
   height: 50px;
   transition: background-position-x 0.9s linear;
   text-align: center;
+  text-transform: uppercase;
 
   a {
     font-size: 22px;
@@ -106,5 +105,9 @@ export default {
   0% {
     background-position-x: 390px;
   }
+}
+.team{
+  width: 40px;
+  height: 40px;
 }
 </style>

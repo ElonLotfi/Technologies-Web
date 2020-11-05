@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <div class="page">
       <v-container class="information">
         <v-row>
           <v-col>
@@ -71,6 +72,7 @@
           ></Pagination>
         </div>
       </div>
+    </div>
   </v-app>
 </template>
 
@@ -154,7 +156,12 @@ export default {
         this.loader = true;
 
         this.getRestaurantsFromServer();
-        this.$vToastify.success("restaurant supprimé");
+        this.$toast.warn({
+          title: "Le restaurant",
+          message: "est supprimé",
+          showDuration: 200,
+          position: "bottom right",
+        });
       });
     },
     // chercher un restaurant
@@ -209,5 +216,6 @@ export default {
   margin-top: 10px;
   margin-bottom: 0px;
 }
-
+.page {
+}
 </style>

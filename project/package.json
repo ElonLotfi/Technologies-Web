@@ -12,6 +12,7 @@
     "bootstrap-vue": "^2.18.0",
     "buefy": "^0.9.3",
     "core-js": "^3.6.5",
+    "cxlt-vue2-toastr": "^1.1.1",
     "gmap-vue": "^1.5.0",
     "lodash": "^4.17.20",
     "material-design-icons-iconfont": "^6.1.0",
@@ -25,6 +26,8 @@
     "vue-router": "^3.4.7",
     "vue-scrollto": "^2.20.0",
     "vue-toastify": "^1.8.0",
+    "vue2-gmap-custom-marker": "^5.6.2",
+    "vue2-google-maps": "^0.10.7",
     "vuetify": "^2.3.15"
   },
   "devDependencies": {

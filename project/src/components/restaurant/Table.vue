@@ -41,7 +41,7 @@
       </v-simple-table>
     </div>
     <div v-else>
-      <h1 class="htitre deep-purple accent-4">aucun restaurant disponible</h1>
+      <h1 class="notfound">pas de restaurant disponible avec ce nom</h1>
     </div>
   </v-app>
 </template>
@@ -105,5 +105,13 @@ export default {
 }
 .imageSpace {
   margin-right: 10px;
+}
+.notfound{
+  text-align: center;
+  margin-left: 70px;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: 25px;
+  margin-top: -100px;
 }
 </style>

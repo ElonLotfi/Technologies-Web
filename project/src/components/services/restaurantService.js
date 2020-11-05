@@ -95,6 +95,17 @@ function editRestaurant(event, id) {
 
 
 
+function generateLatLng(){
+  let lat = Math.random() * (120.120 - (11.888)) + (11.888);
+  let lng = Math.random() * (120.120 - (11.888)) + (11.888);
+
+  const cord = [[lat,lng],[lat,lng]]
+  console.log(cord[0])
+  return cord[0];
+}
+
+
+
 
 export const restaurantService = {
   fetchRestaurants,
@@ -102,6 +113,9 @@ export const restaurantService = {
   deleteRestaurant,
   fetchOneRestaurants,
   editRestaurant,
+  generateLatLng
+
+
 
 
 };
