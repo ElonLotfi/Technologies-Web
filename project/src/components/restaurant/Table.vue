@@ -5,12 +5,12 @@
         <template v-slot:default>
           <thead>
             <tr>
-              <th class="text-center">Name</th>
-              <th class="text-center">Cuisine</th>
-              <th class="text-center">Arrondissement</th>
-              <th class="text-center">Code postal</th>
+              <th class="uper text-center">Nom</th>
+              <th class="uper text-center">spécialité</th>
+              <th class="uper text-center">Arrondissement</th>
+              <th class="uper text-center">Code postal</th>
 
-              <th class="text-center">Action</th>
+              <th class="uper text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -113,5 +113,10 @@ export default {
   text-transform: uppercase;
   font-size: 25px;
   margin-top: -100px;
+}
+.uper{
+   font-weight: lighter;
+  text-transform: uppercase;
+  font-size: 25px;
 }
 </style>

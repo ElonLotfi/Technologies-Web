@@ -52,6 +52,18 @@
       </div>
       <div v-else>
         <br /><br />
+        <div class="boot" v-if="this.nbrPage > 1">
+          <h4 class="numberPage">Page {{ this.currentPage }}</h4>
+
+          <div class="pagination">
+            <Pagination
+              v-bind:nextPage="this.nextPage"
+              v-bind:previousPage="this.previousPage"
+              v-bind:currentPage="this.currentPage"
+              v-bind:nbrPage="this.nbrPage"
+            ></Pagination>
+          </div>
+        </div>
         <div class="divOfTable">
           <Table
             v-bind:restaurants="this.restaurants"
@@ -59,17 +71,6 @@
             v-bind:nbrRestaurant="this.nbrRestaurant"
           >
           </Table>
-        </div>
-      </div>
-
-      <div v-if="this.nbrPage > 1">
-        <div class="pagination">
-          <Pagination
-            v-bind:nextPage="this.nextPage"
-            v-bind:previousPage="this.previousPage"
-            v-bind:currentPage="this.currentPage"
-            v-bind:nbrPage="this.nbrPage"
-          ></Pagination>
         </div>
       </div>
     </div>
@@ -212,10 +213,17 @@ export default {
   margin: 5 auto;
 }
 .pagination {
-  margin-left: 547px;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-left: 500px;
   margin-bottom: 0px;
 }
-.page {
+.numberPage {
+  text-align: center;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.boot {
+  margin-bottom: -550px;
 }
 </style>

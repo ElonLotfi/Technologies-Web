@@ -393,6 +393,8 @@ export default {
 }
 .restaurantName {
   text-align: center;
+  text-transform: uppercase;
+
   margin-top: 7px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: black;
@@ -436,15 +438,21 @@ export default {
   text-align: center;
   font-weight: lighter;
   margin-left: 40px;
+    text-transform: uppercase;
+
 }
 .arrondissement {
   margin-top: 5px;
+    text-transform: uppercase;
+
   text-align: center;
   font-weight: lighter;
   margin-left: 40px;
 }
 .batiment {
   margin-top: 5px;
+    text-transform: uppercase;
+
   text-align: center;
   font-weight: lighter;
   margin-left: 28px;
@@ -454,10 +462,14 @@ export default {
   text-align: center;
   font-weight: lighter;
   margin-left: 29px;
+    text-transform: uppercase;
+
 }
 
 .codePostal {
   margin-top: 5px;
+    text-transform: uppercase;
+
   text-align: center;
   font-weight: lighter;
   margin-left: 29px;
