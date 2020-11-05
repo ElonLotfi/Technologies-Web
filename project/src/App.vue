@@ -2,27 +2,49 @@ export * from './user.service';
 
 <template>
   <v-app>
+    
     <div class="app">
       <nav>
         <ul class="menu">
           <li>
-            <a href="#!"><router-link tag="a" to="/"><img class="team" src="https://img.icons8.com/color/48/000000/home.png"/></router-link></a>
+            <a href="#!"
+              ><router-link tag="a" to="/"
+                ><img
+                  class="team"
+                  src="https://img.icons8.com/color/48/000000/home.png" /></router-link
+            ></a>
           </li>
           <li>
             <a href="#!">
-              <router-link tag="a" to="/home"><img class="team" src="https://img.icons8.com/dusk/64/000000/waiter.png"/></router-link></a
-            >
+              <router-link tag="a" to="/home"
+                ><img
+                  class="team"
+                  src="https://img.icons8.com/dusk/64/000000/waiter.png" /></router-link
+            ></a>
           </li>
           <li>
             <a href="#!"
               ><router-link tag="a" to="/Addrestaurant">
-                <img  class="team" src="https://img.icons8.com/flat_round/64/000000/plus.png"/></router-link
-              ></a
-            >
+                <img
+                  class="team"
+                  src="https://img.icons8.com/flat_round/64/000000/plus.png" /></router-link
+            ></a>
           </li>
-      
+
           <li>
-            <a href="#!"> <router-link tag="a" to="/Team"><img class="team" src="https://img.icons8.com/nolan/64/developer.png"/></router-link></a>
+            <a href="#!">
+              <router-link tag="a" to="/Team"
+                ><img
+                  class="team"
+                  src="https://img.icons8.com/nolan/64/developer.png" /></router-link
+            ></a>
+          </li>
+          <li>
+            <a href="https://github.com/JugheadTn">
+              <img
+                class="team"
+                src="https://img.icons8.com/bubbles/50/000000/github.png"
+            /></a>
           </li>
         </ul>
       </nav>
@@ -106,7 +128,7 @@ export default {
     background-position-x: 390px;
   }
 }
-.team{
+.team {
   width: 40px;
   height: 40px;
 }

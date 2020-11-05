@@ -158,8 +158,8 @@ export default {
 
         this.getRestaurantsFromServer();
         this.$toast.warn({
-          title: "Le restaurant",
-          message: "est supprimé",
+          title: "Oups :(",
+          message: "Le restaurant est supprimé",
           showDuration: 200,
           position: "bottom right",
         });
@@ -225,5 +225,9 @@ export default {
 }
 .boot {
   margin-bottom: -550px;
+  margin-top: -40px;
+}
+.stylo{
+  margin-top: -50px;
 }
 </style>

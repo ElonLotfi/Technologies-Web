@@ -14,12 +14,13 @@
         <div class="form">
           <form @submit.prevent="handleSubmit($event)">
             <v-text-field
-              class="test"
+              class="test special"
               :counter="50"
               label="Nom de restaurant"
               required
               tag="input"
               name="nom"
+              v-model="this.restaurant.name"
             ></v-text-field>
 
             <v-text-field
@@ -29,6 +30,7 @@
               required
               tag="input"
               name="cuisine"
+              v-model="this.restaurant.cuisine"
             ></v-text-field>
             <v-text-field
               class="test"
@@ -37,6 +39,7 @@
               required
               tag="input"
               name="borough"
+              v-model="this.restaurant.borough"
             ></v-text-field>
 
             <v-text-field
@@ -46,6 +49,7 @@
               required
               tag="input"
               name="building"
+              v-model="this.restaurant.address.building"
             ></v-text-field>
             <v-text-field
               class="test"
@@ -53,6 +57,7 @@
               label="Rue"
               required
               tag="input"
+              v-model="this.restaurant.address.street"
               name="street"
             ></v-text-field>
 
@@ -63,6 +68,7 @@
               required
               tag="input"
               name="zipcode"
+              v-model="this.restaurant.address.zipcode"
             ></v-text-field>
             <div class="formButton">
               <v-btn type="submit" color="btn"> Valider </v-btn>
@@ -82,20 +88,41 @@ export default {
     this.fetchOneRestaurant();
   },
   data: () => ({
-    valid: true,
+    key: "",
     restaurant: {
-      address: {},
+      name: "",
+      cuisine: "",
+      address: {
+        street: "",
+        building: "",
+        zipcode: "",
+      },
     },
   }),
   computed: {
     id() {
+      console.log(this.$route.params.id);
       return this.$route.params.id;
     },
   },
+
   methods: {
     // REQUETES PUT
-    handleSubmit() {
-      this.restaurantService.editRestaurant(event, this.id);
+
+    handleSubmit(event) {
+      try {
+        restaurantService.editRestaurant(event, this.id).then(() => {
+          this.$toast.success({
+            title: "Bien joué",
+            message: "Le restaurant est bien édité",
+            showDuration: 200,
+            position: "bottom right",
+          });
+          window.history.go(-1);
+        });
+      } catch (error) {
+        console.log("error.msg");
+      }
     },
 
     async fetchOneRestaurant() {
@@ -198,12 +225,15 @@ export default {
   margin-top: -60px;
 }
 .backgroundFormulaire {
-  background: #ABABA1 no-repeat center center fixed;
+  background: #ababa1 no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   height: 770px;
   padding-top: 40px;
+}
+.special {
+  overflow: hidden;
 }
 </style>

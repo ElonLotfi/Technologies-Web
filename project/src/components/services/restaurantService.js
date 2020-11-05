@@ -58,7 +58,7 @@ function fetchOneRestaurants(id) {
 
 function editRestaurant(event, id) {
   // Pour éviter que la page ne se ré-affiche
-  event.preventDefault();
+  //event.preventDefault();
 
   // Récupération du formulaire. Pas besoin de document.querySelector
   // ou document.getElementById puisque c'est le formulaire qui a généré
@@ -76,7 +76,7 @@ function editRestaurant(event, id) {
 
   let url = API_URL + id;
 
-  fetch(url, {
+  return fetch(url, {
     method: "PUT",
     body: donneesFormulaire
   })
@@ -87,7 +87,7 @@ function editRestaurant(event, id) {
           console.log("le restaurant est modifier monsieur lotfi :)" + res.msg)
         });
     })
-    .catch(function (err) {
+    .catch( (err)=> {
       console.log(err);
     });
 

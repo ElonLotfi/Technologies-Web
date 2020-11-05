@@ -25,7 +25,7 @@
                   <img
                     class="imageSpace image"
                     v-on:click="deleteRestaurant(r)"
-                    src="https://img.icons8.com/color/48/000000/delete-forever.png"
+                    src="https://img.icons8.com/nolan/64/delete-sign.png"
                     tag="button"
                   />
                   <router-link tag="button" :to="'/RestaurantDetail/' + r._id">

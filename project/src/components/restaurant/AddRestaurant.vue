@@ -10,11 +10,11 @@
       </v-row>
     </div>
     <div class="backgroundFormulaire">
-      <div class="formulaire" id="element">
-        <div class="form">
-          <form @submit.prevent="handleSubmit($event)">
+      <div class="formulaire " id="element">
+        <div class="form ">
+          <form class="fomr1" @submit.prevent="handleSubmit($event)">
             <v-text-field
-              class="test"
+              class="test special"
               v-model="restaurant.nom"
               :counter="50"
               label="Nom de restaurant"
@@ -125,6 +125,7 @@ export default {
   margin: 0 auto;
   background-color: white;
   padding: 0 50px 50px 50px;
+  
 }
 
 .description {
@@ -214,4 +215,13 @@ export default {
   height: 770px;
   padding-top: 40px;
 }
+input
+{
+height: 30px;
+width: 100px;
+}
+.special{
+  overflow: hidden;
+}
+
 </style>

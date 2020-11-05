@@ -5,13 +5,13 @@
         <thead>
           <tr >
             <p class="text">{{ nbrRestaurant }}</p>
-            <th ><v-img  src="https://img.icons8.com/color/48/000000/fry.png"/></th>
+            <th ><v-img tag=""  src="https://img.icons8.com/color/48/000000/fry.png"/></th>
             <p class="text">{{ nbrPage }}</p>
             <th >
-              <v-img src="https://img.icons8.com/color/48/000000/literature.png"/>
+              <v-img tag="img" src="https://img.icons8.com/color/48/000000/literature.png"/>
             </th>
             <p class="text">{{ pageSize }}</p>
-            <th><v-img src="https://img.icons8.com/color/48/000000/page-size.png"/></th>
+            <th><v-img tag="img" src="https://img.icons8.com/color/48/000000/page-size.png"/></th>
           </tr>
         </thead>
       </template>
@@ -43,7 +43,6 @@ export default {
 }
 .text {
   /* hauteur du parent */
-  line-height: 5em; /* hauteur de ligne (identique) */
   white-space: nowrap; /* interdiction de passer à la ligne */
   margin-top: 10px;
   text-decoration: none;
