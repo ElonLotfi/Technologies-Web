@@ -103,8 +103,8 @@ export default {
           responseJSON.json().then((res) => {
             console.log(res);
             this.$toast.success({
-              title: "Le restaurant",
-              message: "est bien ajouté",
+              title: "bien joué",
+              message: "Le restaurant est bien ajouté",
               showDuration: 200,
               position: "bottom right",
             });

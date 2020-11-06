@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
+
 //Components
 import restaurantList from "./components/restaurant/restaurantList.vue";
 import Restaurant from "./components/restaurant/Restaurant.vue"
@@ -9,6 +10,8 @@ import RestaurantDetail from "./components/restaurant/RestaurantDetail"
 import home from "./components/home/Home"
 import Menu from "./components/menuRestaurant/Menu.vue"
 import Team from "./components/team/Team.vue"
+import Summary from "./components/order/Summary.vue"
+import Basket from "./components/order/Basket.vue"
 
 // Les imports
 import Vuetify from 'vuetify';
@@ -21,6 +24,11 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 
 
+// vue resource
+
+import VueResource from 'vue-resource';
+
+Vue.use(VueResource)
 
 
 // Scroll
@@ -71,7 +79,14 @@ const router = new VueRouter(
       path: '/Team',
       component: Team
     },
-
+    {
+      path: '/Summary',
+      component: Summary
+    },
+    {
+      path: '/Basket',
+      component: Basket
+    },
     {
       path: '/',
       component: home

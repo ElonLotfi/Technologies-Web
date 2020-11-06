@@ -2,7 +2,6 @@ export * from './user.service';
 
 <template>
   <v-app>
-    
     <div class="app">
       <nav>
         <ul class="menu">
@@ -39,6 +38,16 @@ export * from './user.service';
                   src="https://img.icons8.com/nolan/64/developer.png" /></router-link
             ></a>
           </li>
+          <li>
+            <a href="#!">
+              <router-link tag="a" to="/Basket"
+                ><img
+                  class="team"
+                  src="https://img.icons8.com/nolan/64/shopping-basket-2.png" /></router-link
+            ></a>
+          </li>
+          <v-spacer></v-spacer>
+
           <li>
             <a href="https://github.com/JugheadTn">
               <img
