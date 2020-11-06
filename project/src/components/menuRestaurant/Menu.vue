@@ -34,11 +34,15 @@
             </h4>
             <p class="description">{{ this.dessertDiscription }}</p>
           </div>
-          <v-btn type="submit" v-on:click="addProductToBasket()" color="btn">
-            Valider
-          </v-btn>
-
          
+        </div>
+
+       
+
+        <div class="addToBasket">
+           <v-btn  type="submit" v-on:click="addProductToBasket()" color="success">
+            Ajouter au panier
+          </v-btn>
         </div>
       </div>
     </div>
@@ -65,7 +69,7 @@ export default {
 
   mounted() {
     this.generateMenu();
-    basketService.initProducts()
+    basketService.initProducts();
   },
 
   methods: {
@@ -86,6 +90,12 @@ export default {
       try {
         basketService.addProductToBasket(this.menu);
         console.log("my basket" + this.menu);
+        this.$toast.success({
+          title: "Success",
+          message: "Le menu est ajouté au panier",
+          showDuration: 200,
+          position: "bottom right",
+        });
       } catch (error) {
         console.log(error);
       }
@@ -230,5 +240,10 @@ body {
   font-weight: lighter;
   text-transform: uppercase;
   font-size: 16px;
+}
+.addToBasket{
+  margin-left: 505px;
+  margin-top: -20px;
+  margin-bottom :20px;
 }
 </style>  

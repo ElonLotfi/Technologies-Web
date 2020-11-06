@@ -9,6 +9,7 @@ function initProducts() {
     } else {
 
         var products = new Array();
+        
         sessionStorage.setItem("prod", products);
     }
 
@@ -23,7 +24,6 @@ function addProductToBasket(newProduct) {
     get.push(products);
     get.push(newProduct);
     sessionStorage.setItem("prod", get);
-    console.log(get)
 
 
 
@@ -32,7 +32,7 @@ function addProductToBasket(newProduct) {
 function getProducts() {
     var get = new Array();
     get.push(sessionStorage.getItem("prod"))
-    return get;
+    return get[0];
 }
 
 export const basketService = {

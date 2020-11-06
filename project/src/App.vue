@@ -29,6 +29,14 @@ export * from './user.service';
                   src="https://img.icons8.com/flat_round/64/000000/plus.png" /></router-link
             ></a>
           </li>
+          <li>
+            <a href="#!">
+              <router-link tag="a" to="/Basket"
+                ><img
+                  class="team"
+                  src="https://img.icons8.com/nolan/64/shopping-basket-2.png" /></router-link
+            ></a>
+          </li>
 
           <li>
             <a href="#!">
@@ -38,14 +46,7 @@ export * from './user.service';
                   src="https://img.icons8.com/nolan/64/developer.png" /></router-link
             ></a>
           </li>
-          <li>
-            <a href="#!">
-              <router-link tag="a" to="/Basket"
-                ><img
-                  class="team"
-                  src="https://img.icons8.com/nolan/64/shopping-basket-2.png" /></router-link
-            ></a>
-          </li>
+
           <v-spacer></v-spacer>
 
           <li>
