@@ -29,7 +29,7 @@ width="200" style="text-align:center"/>
 
 ### Que fait cette application ?
 
-      Cette application permettra aux utilisateurs qui le souhaitent de consulter une liste de restaurants , afficher les coordonnées de chaque restaurant (nom,         spécialité, adresse et menu du jour) et de pouvoir ajouter un plat au panier .
+      Cette application permettra aux utilisateurs qui le souhaitent de consulter une liste de restaurants , afficher les coordonnées de chaque restaurant (nom,spécialité, adresse et menu du jour) et de pouvoir ajouter un plat au panier .
  
 
 
