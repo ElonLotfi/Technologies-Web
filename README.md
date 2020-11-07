@@ -1,5 +1,8 @@
 ## Technologies Web - Gestion d'une base de données de restaurants 
-![](https://i.ibb.co/3r2QyfG/miage.png =250x200)
+
+
+<img src="https://i.ibb.co/3r2QyfG/miage.png" alt="drawing" width="200"/>
+
 
 
 ### Exemple d'exécution 
