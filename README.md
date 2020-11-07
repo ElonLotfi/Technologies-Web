@@ -1,7 +1,8 @@
 ## Technologies Web - Gestion d'une base de données de restaurants 
+![](https://i.ibb.co/3r2QyfG/miage.png =250x200)
 
 
-### Exemple d'exécution de jeu 
+### Exemple d'exécution 
 
 ![](https://github.com/JugheadTn/Technologies-Web/blob/master/InterfaceExemple.gif)
    
@@ -13,7 +14,7 @@
 	 Node.js
 	 Vue.js
 	 MongoDB
-    Express
+    	 Express
 
 
 ------------
