@@ -1,6 +1,7 @@
 ## Technologies Web - Gestion d'une base de données de restaurants
 
- 
+ ------------
+
 <img src="https://i.ibb.co/3r2QyfG/miage.png" alt="drawing" 
 width="170px" align="right"/>  <br /><br />
 <p width="100px" text-align="left"/>Ce projet a été réalisé par M'hamed Lotfi et encadre par M Michel Buffa  <img src="https://img.icons8.com/emoji/48/000000/man-mage.png" width="25px"/> dans la discipline technologies web pour l'année universitaire 2020-2021.</p>
