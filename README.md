@@ -1,8 +1,8 @@
 # Technologies Web - Gestion d'une base de données de restaurants 
 
 
-<img src="https://i.ibb.co/3r2QyfG/miage.png" alt="drawing" 
-width="200" style="text-align:center"/>  
+<br /> <img src="https://i.ibb.co/3r2QyfG/miage.png" alt="drawing" 
+width="400px" align="right"/>  
 
 ------------
 
