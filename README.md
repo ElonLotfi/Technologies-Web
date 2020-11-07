@@ -1,7 +1,7 @@
 # Technologies Web - Gestion d'une base de données de restaurants 
 
 
-<img src="https://i.ibb.co/3r2QyfG/miage.png" alt="drawing" width="200"/><img src="https://i.ibb.co/6XTQPZD/unice.png" alt="drawing" width="200"/>
+<img src="https://i.ibb.co/3r2QyfG/miage.png" alt="drawing" /> <br> <img src="https://i.ibb.co/6XTQPZD/unice.png" alt="drawing" />
 
 
 
