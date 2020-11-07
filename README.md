@@ -21,17 +21,17 @@ width="200" style="text-align:center"/>
 ------------
 
 ### Points remarquables de projet
-	 Une interface graphique optimisée grâce à la bibliothèque graphique de vuetify.
-	 J'ai essayer de générer un menu de jour au hasard.
-	 J'ai ajouté un petit système de réservation de menu restaurant, ce système est basé sur "sessionStorage".
-	 Modifier les données d'un restaurant
+	 - Une interface graphique optimisée grâce à la bibliothèque graphique de vuetify.
+	 - J'ai essayer de générer un menu de jour au hasard.
+	 - J'ai ajouté un petit système de réservation de menu restaurant, ce système est basé sur "sessionStorage".
+	 - Modifier les données d'un restaurant
 ------------
 
 ### Technologie utilisée : 
-	 Node.js
-	 Vue.js
-	 MongoDB
-	 Express
+	 - Node.js
+	 - Vue.js
+	 - MongoDB
+	 - Express
 
 
 ------------
