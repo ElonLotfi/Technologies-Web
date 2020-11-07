@@ -4,7 +4,6 @@
 <img src="https://i.ibb.co/3r2QyfG/miage.png" alt="drawing" 
 width="200" style="text-align:center"/>  
 
-
 ------------
 
 
@@ -12,7 +11,13 @@ width="200" style="text-align:center"/>
 
 ![](https://github.com/JugheadTn/Technologies-Web/blob/master/InterfaceExemple.gif)
    
+------------
 
+
+### Que fait cette application ?
+
+      Cette application permettra aux utilisateurs qui le souhaitent de consulter une liste de restaurants , afficher les coordonnées de chaque restaurant (nom,spécialité, adresse et menu du jour) et de pouvoir ajouter un plat au panier .
+ 
 ------------
 
 ### Points remarquables de projet
@@ -27,15 +32,6 @@ width="200" style="text-align:center"/>
 	 Vue.js
 	 MongoDB
 	 Express
-
-
-------------
-
-
-### Que fait cette application ?
-
-      Cette application permettra aux utilisateurs qui le souhaitent de consulter une liste de restaurants , afficher les coordonnées de chaque restaurant (nom,spécialité, adresse et menu du jour) et de pouvoir ajouter un plat au panier .
- 
 
 
 ------------
