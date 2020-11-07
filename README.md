@@ -1,71 +1,78 @@
-## Customer Relationship Management - Gestion de la Relation au Client 
+## Technologies Web - Gestion d'une base de données de restaurants 
 
 
+### Exemple d'exécution de jeu 
+
+![](https://github.com/JugheadTn/Technologies-Web/blob/master/InterfaceExemple.gif)
    
-   
+
+
+
 
 ### Technologie utilisée : 
-- Symfony 4
-- Node.js 
-- MongoDB
-- Express
+	 Node.js
+	 Vue.js
+	 MongoDB
+    Express
+
 
 ------------
 
 
 ### Que fait cette application ?
 
- Cette application permettra aux utilisateurs qui le souhaitent de consulter une liste de restaurants , afficher les coordonnées de chaque restaurant (nom, spécialité, adresse et menu du jour) et de pouvoir ajouter un plat au panier .
- 
- ![](https://i.ibb.co/VqRSbrr/projet.png)
+      Cette application permettra aux utilisateurs qui le souhaitent de consulter une liste de restaurants , afficher les coordonnées de chaque restaurant (nom,         spécialité, adresse et menu du jour) et de pouvoir ajouter un plat au panier .
  
 
-------------
-
-
-### Les étapes pour créer cette application  :
-
-
-
-
-
-### La partie back-end :
-
-- Création d'une API REST  avec [Symfony 4](https://symfony.com "Symfony 4") et [ApiPlatform](https://api-platform.com/ "ApiPlatform")
-- Gérer la sécurité et authentification grâce à [JWT](https://jwt.io/ "JWT")  
-- Utilisation de [Faker](https://github.com/fzaninotto/Faker "Faker") pour ajouter de faux utilisateurs dans ma base de données
 
 ------------
 
 
-------------
+## Les fonctionnalités à réaliser ?
 
-
-### La partie front-end :
-- Mettre en place une interface avec React
-- Utilisation de [bootstrap](https://getbootstrap.com/ "bootstrap") pour concevoir l'application plus rapidement et plus facilement
-- Utilisation des dernières bonnes pratiques de React (Hooks, Contexts ...)
-- Utilisation de la librairie [Axios](https://github.com/axios/axios "Axios") pour faire des requêtes HTTP depuis Javascript ()
-- Déploiement de l'application sur [heroku](http://heroku.com "heroku")
-
-------------
-
-
-
-![steps](https://scontent-cdt1-1.xx.fbcdn.net/v/t1.0-9/93422720_548619602736325_379559428317249536_o.jpg?_nc_cat=101&_nc_sid=8024bb&_nc_ohc=MgZQNM4FJ7EAX8zC3Oe&_nc_ht=scontent-cdt1-1.xx&oh=c4409ecd181e7f8d41117c85adcfb5ab&oe=5EC0AF4F "steps")
-
+      - Afficher une liste de restaurants par le biais d'une base de données.
+      - Ajouter un nouveau restaurant.
+      - Modifier un restaurant.
+      - Rechercher un restaurant.
+      - Afficher la position du restaurant grâce aux coordonnées de sa position.
+      - Afficher l'adresse du restaurant sur une carte avec les coordonnées de son emplacement (Google Maps API).
+      - Google Maps API.
+      - Générer un menu de jour au hasard.
+      - Ajouter un menu au panier.
 
 ------------
 
-### Les outils nécessaires
+### Pour lancer le serveur Node.js :
+	node serverCrudWithMongo.js 
+### Pour lancer la partie frontale  :
+   
+	npm run serve
 
-- le gestionnaire de versions GIT
-- PHP 7.1 minimum et MySQL via WAMP
-- le gestionnaire de dépendances de PHP  : Composer (Pour développer des applications modernes en PHP)
-- NodeJS et NPM
 
 
 ------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
