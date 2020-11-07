@@ -29,6 +29,7 @@ width="170px" align="right"/>  <br /><br />
 - J'ai essayer de générer un menu de jour au hasard.
 - J'ai ajouté un petit système de réservation de menu restaurant, ce   	système est basé sur "sessionStorage".
 - Modifier les données d'un restaurant.
+- Modification de la partie back end afin de pouvoir modifier et ajouter un restaurant dans la base de données.
 
 ------------
 
