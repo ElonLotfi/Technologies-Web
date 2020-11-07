@@ -116,6 +116,7 @@ export default {
   width: 250px;
   height: 200px;
   margin-left: 50px;
+   border-radius: 50%;
 }
 .prodName {
   margin-top: -210px;
@@ -178,9 +179,10 @@ export default {
   width: 250px;
   height: 200px;
   margin-left: 730px;
+   border-radius: 50%;
 }
 .dessertNames {
-  margin-top: -210px;
+  margin-top: -227px;
   color: #f6c133;
   margin-left: 1030px;
   font-weight: lighter;
