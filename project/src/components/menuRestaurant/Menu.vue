@@ -34,13 +34,14 @@
             </h4>
             <p class="description">{{ this.dessertDiscription }}</p>
           </div>
-         
         </div>
 
-       
-
         <div class="addToBasket">
-           <v-btn  type="submit" v-on:click="addProductToBasket()" color="success">
+          <v-btn
+            type="submit"
+            v-on:click="addProductToBasket()"
+            color="success"
+          >
             Ajouter au panier
           </v-btn>
         </div>
@@ -57,6 +58,7 @@ export default {
   data() {
     return {
       menu: [],
+      dess : [],
       menuName: "",
       menuPic: "",
       menuDiscription: "",
@@ -69,7 +71,7 @@ export default {
 
   mounted() {
     this.generateMenu();
-    basketService.initProducts();
+    basketService.initProducts("prod");
   },
 
   methods: {
@@ -80,16 +82,20 @@ export default {
       this.menuDiscription = this.menu[2];
       this.menuPrice = menuGenerator.generateMenuPrice();
 
-      let dessert = menuGenerator.generateDessert();
-      this.dessertName = dessert[0];
-      this.dessertPic = dessert[1];
-      this.dessertDiscription = dessert[2];
+      this.dess = menuGenerator.generateDessert();
+      this.dessertName = this.dess[0];
+      this.dessertPic = this.dess[1];
+      this.dessertDiscription = this.dess[2];
     },
 
     addProductToBasket() {
       try {
-        basketService.addProductToBasket(this.menu);
+        basketService.addProductToBasket("dessert", this.dess);
+        basketService.addProductToBasket("prod", this.menu);
+        basketService.updatePrice(this.menuPrice);
         console.log("my basket" + this.menu);
+        window.history.go(0);
+
         this.$toast.success({
           title: "Success",
           message: "Le menu est ajouté au panier",
@@ -241,9 +247,9 @@ body {
   text-transform: uppercase;
   font-size: 16px;
 }
-.addToBasket{
+.addToBasket {
   margin-left: 505px;
   margin-top: -20px;
-  margin-bottom :20px;
+  margin-bottom: 20px;
 }
 </style>  

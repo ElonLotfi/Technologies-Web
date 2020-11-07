@@ -47,7 +47,7 @@
       </div>
       <div v-else><br /><br /><br /><br /></div>
 
-      <div v-if="this.loader == true">
+      <div class="loader" v-if="this.loader == true">
         <Loader></Loader>
       </div>
       <div v-else>
@@ -229,5 +229,8 @@ export default {
 }
 .stylo{
   margin-top: -50px;
+}
+.loader{
+  margin-top: -150px;
 }
 </style>

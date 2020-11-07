@@ -29,14 +29,16 @@ export * from './user.service';
                   src="https://img.icons8.com/flat_round/64/000000/plus.png" /></router-link
             ></a>
           </li>
-          <li>
-            <a href="#!">
-              <router-link tag="a" to="/Basket"
-                ><img
-                  class="team"
-                  src="https://img.icons8.com/nolan/64/shopping-basket-2.png" /></router-link
-            ></a>
-          </li>
+          <div  v-if="this.show == true">
+            <li>
+              <a href="#!">
+                <router-link tag="a" to="/Basket"
+                  ><img
+                    class="team"
+                    src="https://img.icons8.com/nolan/64/shopping-basket-2.png" /></router-link
+              ></a>
+            </li>
+          </div>
 
           <li>
             <a href="#!">
@@ -47,7 +49,6 @@ export * from './user.service';
             ></a>
           </li>
 
-          <v-spacer></v-spacer>
 
           <li>
             <a href="https://github.com/JugheadTn">
@@ -67,6 +68,8 @@ export * from './user.service';
 </template>
 
 <script>
+import { basketService } from "./components/order/basketService";
+
 export default {
   data() {
     return {
@@ -77,8 +80,20 @@ export default {
       links: ["home", "Restaurant", "Settings"],
       mini: true,
       drawer: true,
+      show : false ,
     };
   },
+  mounted(){
+this.checkStorage();
+  },
+  methods:{
+    checkStorage(){
+     this.products = basketService.getProducts("prod").split(",");
+     if(this.products[1] != null ){
+       this.show = true;
+     }
+    }
+  }
 };
 </script>
 
@@ -142,4 +157,5 @@ export default {
   width: 40px;
   height: 40px;
 }
+
 </style>

@@ -47,8 +47,10 @@ export default {
   margin-top: 10px;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 18px;
   letter-spacing: 2px;
+     font-weight: lighter;
+
+  font-size: 22px;
   
 }
 

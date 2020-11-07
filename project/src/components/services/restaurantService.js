@@ -1,6 +1,7 @@
 import { API_URL, API_FETCH_URL } from "./config"
 
 
+// Recuperer la liste de restaurant depuis le server
 function fetchRestaurants(currentPage, pageSize, nameSearch) {
   let url =
     API_FETCH_URL + currentPage;
@@ -11,6 +12,7 @@ function fetchRestaurants(currentPage, pageSize, nameSearch) {
 
 }
 
+// Ajouter un restaurant dans la base de donnée
 function addRestaurant(event) {
   // Récupération du formulaire. Pas besoin de document.querySelector
   // ou document.getElementById puisque c'est le formulaire qui a généré
@@ -35,6 +37,7 @@ function addRestaurant(event) {
 
 }
 
+// Supprimer un restaurant 
 function deleteRestaurant(restaurant) {
 
 
@@ -52,10 +55,12 @@ function deleteRestaurant(restaurant) {
     });
 }
 
+// Recuperer un seul restaurant via son id
 function fetchOneRestaurants(id) {
   return fetch(API_URL + id)
 }
 
+// Modifier les valeur d'un restaurant 
 function editRestaurant(event, id) {
   // Pour éviter que la page ne se ré-affiche
   //event.preventDefault();
@@ -95,6 +100,7 @@ function editRestaurant(event, id) {
 
 
 
+// Generer aleatoirement les cordonné d'une position
 function generateLatLng(){
   let lat = Math.random() * (120.120 - (11.888)) + (11.888);
   let lng = Math.random() * (120.120 - (11.888)) + (11.888);

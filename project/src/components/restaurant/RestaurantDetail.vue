@@ -77,17 +77,17 @@
           <div class="map">
             <GmapMap
               v-bind:center="{
-                lat: this.pos1,
-                lng: this.pos2,
+                lat: this.pos2,
+                lng: this.pos1,
               }"
-              v-bind:zoom="3"
+              v-bind:zoom="18"
               map-type-id="terrain"
               style="height: 400px"
             >
               <GmapMarker
                 v-bind:position="{
-                  lat: this.pos1,
-                  lng: this.pos2,
+                  lat: this.pos2,
+                  lng: this.pos1,
                 }"
                 v-bind:clickable="true"
               />
