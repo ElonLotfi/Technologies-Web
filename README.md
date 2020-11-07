@@ -8,14 +8,19 @@ width="200" style="text-align:center"/>
 ------------
 
 
-### Exemple d'exécution 
+### Demo
 
 ![](https://github.com/JugheadTn/Technologies-Web/blob/master/InterfaceExemple.gif)
    
 
 ------------
 
+### Points remarquables de projet
+	 Une conception optimisée.
+	 J'ai essayer de générer un menu de jour au hasard.
+	 J'ai ajouté un petit système de réservation de menu restaurant, ce système est basé sur "sessionStorage".
 
+------------
 
 ### Technologie utilisée : 
 	 Node.js
