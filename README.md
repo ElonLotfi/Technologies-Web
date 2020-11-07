@@ -2,7 +2,7 @@
 
 
 <img src="https://i.ibb.co/3r2QyfG/miage.png" alt="drawing" 
-width="200" style="text-align:center"/>  <img src="https://i.ibb.co/6XTQPZD/unice.png" alt="drawing" width="200" style="text-align:center"/>
+width="200" style="text-align:center"/>  
 
 
 
