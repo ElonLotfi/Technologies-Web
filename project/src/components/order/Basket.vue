@@ -151,7 +151,7 @@ export default {
 .passerCmnd {
   margin-left: 550px;
   margin-top: -35px;
-  background: chartreuse;
+  background: black;
   width: 190px;
   height: 36px;
   border-radius: 7%;
