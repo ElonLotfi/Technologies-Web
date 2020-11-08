@@ -46,13 +46,13 @@ width="170px" align="right"/>  <br /><br />
 ## Les fonctionnalités à réaliser ?
 
    - Afficher une liste de restaurants par le biais d'une base de données.
-    - Ajouter un nouveau restaurant.
-    - Modifier un restaurant.
-    - Rechercher un restaurant.
-    - Afficher la position du restaurant grâce aux coordonnées de sa position.
-    - Afficher l'adresse du restaurant sur une carte avec les coordonnées de son emplacement (Google Maps API).
-    - Générer un menu de jour au hasard.
-    - Ajouter un menu au panier.
+   - Ajouter un nouveau restaurant.
+   - Modifier un restaurant.
+   - Rechercher un restaurant.
+   - Afficher la position du restaurant grâce aux coordonnées de sa position.
+   - Afficher l'adresse du restaurant sur une carte avec les coordonnées de son emplacement (Google Maps API).
+   - Générer un menu de jour au hasard.
+   - Ajouter un menu au panier.
 
 ------------
 
