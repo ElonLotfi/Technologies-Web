@@ -56,7 +56,7 @@ width="170px" align="right"/>  <br /><br />
 
 ------------
 
-<p> <img src="https://media.giphy.com/media/wAxlCmeX1ri1y/source.gif" width="100px"> <b>voici le lien Youtube de la video :  </b> <a href="https://youtu.be/xzayJZPnbQ4"> 
+<p> <img src="https://media.giphy.com/media/wAxlCmeX1ri1y/source.gif" width="100px" align="left"><br <p>voici le lien Youtube de la video :  </p> <a href="https://youtu.be/xzayJZPnbQ4"> 
   <img align="center" alt="said" width="60px" src="https://img.icons8.com/cute-clipart/64/000000/youtube.png" />
 </a></p> 
 
